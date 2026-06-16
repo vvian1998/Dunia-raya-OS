@@ -1,0 +1,9 @@
+{
+  "name": "Dunia Raya OS v8.3.1",
+  "short_name": "DROS v8.3.1",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F4EFE7",
+  "theme_color": "#123A5A",
+  "icons": []
+}

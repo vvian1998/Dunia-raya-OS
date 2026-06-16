@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</title>
+<meta name="author" content="Alpian Putra Sentosa">
+<meta name="copyright" content="Copyright (c) 2026 Alpian Putra Sentosa. All Rights Reserved.">
+<meta name="application-name" content="Dunia Raya OS">
+<meta name="dunia-raya-signature" content="DR-APS-2026">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#123A5A">
+<style>
+:root{
+  --bg:#F4EFE7;--card:#FFFDF8;--ink:#17212B;--muted:#746B61;
+  --primary:#123A5A;--deep:#071A2A;--accent:#C79A43;--line:#E7DCCB;
+  --green:#2F7D55;--red:#B55248;--shadow:0 14px 34px rgba(20,30,40,.08);--soft:#EFE4D5;--input:#FFFCF7;--nav:rgba(255,253,248,.95);
+  --radius:24px;--soft:#EFE4D5;--input:#FFFCF7;--nav:rgba(255,253,248,.95);
+}
+:root[data-theme="dark"]{
+  --bg:#08111B;--card:#101C28;--ink:#F4EFE7;--muted:#C5CCD3;
+  --primary:#D9B76B;--deep:#050A10;--accent:#C79A43;--line:#3A4B5F;
+  --green:#75C894;--red:#E08178;--shadow:0 14px 34px rgba(0,0,0,.28);--soft:#1A2A3A;--input:#111827;--nav:rgba(16,28,40,.94);
+}
+:root[data-theme="light"]{
+  --bg:#F4EFE7;--card:#FFFDF8;--ink:#17212B;--muted:#746B61;
+  --primary:#123A5A;--deep:#071A2A;--accent:#C79A43;--line:#E7DCCB;
+  --green:#2F7D55;--red:#B55248;--shadow:0 14px 34px rgba(20,30,40,.08);--soft:#EFE4D5;--input:#FFFCF7;--nav:rgba(255,253,248,.95);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:88px}
+header{padding:30px 20px 12px}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:900}
+h1{margin:4px 0 0;color:var(--primary);font-size:31px;letter-spacing:-.055em}
+.profile-top{display:flex;gap:12px;align-items:center;margin-top:16px;cursor:pointer;animation:slide .35s ease}
+.profile-meta{display:flex;flex-direction:column;gap:3px}.profile-meta b{font-size:15px}.profile-meta small{display:block;color:var(--muted);font-size:12px;font-weight:750}.title-badge{display:inline-flex;width:max-content;align-items:center;border:1px solid var(--line);background:var(--soft);color:var(--primary);border-radius:999px;padding:3px 8px;font-size:11px;font-weight:900}
+.avatar{width:56px;height:56px;border-radius:20px;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;color:var(--primary);font-weight:950;font-size:20px;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover;transform-origin:center}
+.screen{display:none;padding:0 18px 22px}.screen.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:.25;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{from{transform:scale(.97);opacity:.45}to{transform:scale(1);opacity:1}}
+.hero{cursor:pointer;background:linear-gradient(135deg,var(--primary),var(--deep));color:#fff;border-radius:30px;padding:22px;margin-bottom:14px;box-shadow:0 18px 36px rgba(18,58,90,.24);animation:pop .25s ease;transition:.16s ease}
+.hero:active,.card.clickable:active,.row.clickable:active{transform:scale(.985)}
+.hero p{margin:0;color:rgba(255,255,255,.7);font-size:13px}.balance{font-size:35px;font-weight:950;letter-spacing:-.07em;margin:8px 0 18px}
+.hero-grid,.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hero-mini{padding:12px;border-radius:18px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.13)}
+.hero-mini span{display:block;color:rgba(255,255,255,.65);font-size:11px}.hero-mini b{font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:12px;animation:pop .18s ease}
+.card.clickable{cursor:pointer;transition:.16s ease}
+.card h3{margin:0 0 8px;color:var(--primary);font-size:17px;font-weight:850;letter-spacing:-.015em}
+.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;font-weight:500}.big{font-size:23px;font-weight:950;letter-spacing:-.055em}
+.progress{height:9px;background:var(--soft);border-radius:999px;overflow:hidden;margin:12px 0 8px}.bar{height:100%;background:linear-gradient(90deg,var(--accent),#E0BD70);transition:width .35s ease}
+.section{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 10px}.section h2{margin:0;color:var(--primary);font-size:19px;letter-spacing:-.035em}.section span{font-size:12px;color:var(--muted)}
+.row{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 7px 18px rgba(20,30,40,.045);margin-bottom:10px}
+.row.clickable{cursor:pointer;transition:.16s ease}
+.left{display:flex;gap:12px;align-items:center;min-width:0}.icon{width:42px;height:42px;border-radius:16px;background:var(--soft);display:grid;place-items:center;color:var(--primary);flex:none}.icon svg,nav svg{width:22px;height:22px;stroke:currentColor}
+.row b{font-size:14px}.row small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.income{color:var(--green);font-weight:950}.expense{color:var(--red);font-weight:950}
+.actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.chip{border:1px solid var(--line);background:var(--input);border-radius:12px;padding:7px 9px;font-weight:850;color:var(--primary)}
+.tabs{display:flex;gap:8px;margin:0 0 12px}.tabs button{flex:1;border:1px solid var(--line);background:var(--input);color:var(--muted);border-radius:14px;padding:10px;font-weight:900}.tabs button.active{background:var(--primary);color:#fff}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(520px,100%);height:78px;background:var(--nav);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;backdrop-filter:blur(18px);z-index:5}
+nav button{border:0;background:transparent;color:var(--muted);font-weight:850;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px}nav button.active{color:var(--primary)}
+.fab{position:fixed;right:24px;bottom:94px;width:58px;height:58px;border-radius:22px;border:0;background:linear-gradient(135deg,var(--accent),#E0BD70);color:#1d1405;font-size:30px;box-shadow:0 14px 28px rgba(199,154,67,.35);z-index:4}
+input,select,textarea{width:100%;border:1px solid var(--line);background:var(--input);color:var(--ink);border-radius:16px;padding:14px;font:inherit;margin:7px 0 12px;outline:none;caret-color:var(--primary)}input::placeholder,textarea::placeholder{color:var(--muted);opacity:.78}input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(199,154,67,.18)}:root[data-theme="dark"] input,:root[data-theme="dark"] select,:root[data-theme="dark"] textarea{background:#111827;color:#F9FAFB;border-color:#4B5563}:root[data-theme="dark"] input::placeholder,:root[data-theme="dark"] textarea::placeholder{color:#CBD5E1;opacity:.82}:root[data-theme="dark"] label{color:#E5E7EB}.lock input,.welcome input{background:rgba(255,255,255,.96)!important;color:#0F172A!important;border:1px solid rgba(255,255,255,.55)!important;box-shadow:0 12px 30px rgba(0,0,0,.18)}.lock input::placeholder{color:#64748B!important;opacity:1}.pinbox{letter-spacing:.4em;text-align:center;font-size:26px;font-weight:950}textarea{min-height:110px}label{font-size:12px;color:var(--muted);font-weight:850}.btn{width:100%;border:0;background:var(--primary);color:#fff;border-radius:18px;padding:15px;font-weight:950}.btn.alt{background:var(--soft);color:var(--primary)}.btn.danger{background:var(--red)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:end;z-index:30}.modal.active{display:flex}.sheet{width:100%;max-width:520px;margin:0 auto;background:var(--card);border-radius:30px 30px 0 0;padding:22px;border:1px solid var(--line);max-height:88vh;overflow:auto;animation:sheet .2s ease}@keyframes sheet{from{transform:translateY(80px)}to{transform:translateY(0)}}
+.lock,.welcome,.cropper-page{position:fixed;inset:0;z-index:99;background:linear-gradient(180deg,var(--primary),var(--deep));color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:26px;text-align:center}
+.lock.hidden,.welcome,.cropper-page{display:none}.welcome.active,.cropper-page.active{display:flex}.lock h1,.welcome h1{color:#fff;font-size:34px}.pinbox{letter-spacing:.4em;text-align:center;font-size:26px;font-weight:950}.welcome .avatar{width:94px;height:94px;border-radius:32px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:34px;margin-bottom:18px}
+.saved-pill{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:rgba(18,58,90,.92);color:#fff;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:850;z-index:120;opacity:0;pointer-events:none;transition:.25s}.saved-pill.show{opacity:1}
+.crop-stage{width:min(320px,86vw);height:min(320px,86vw);border-radius:50%;overflow:hidden;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.75);position:relative;touch-action:none;margin:18px 0}
+.crop-stage img{position:absolute;left:50%;top:50%;max-width:none;user-select:none;-webkit-user-drag:none;transform-origin:center}
+.crop-preview{width:74px;height:74px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);margin:auto}
+.crop-preview img{width:100%;height:100%;object-fit:cover}
+.range{width:min(320px,86vw);accent-color:var(--accent)}
+.crop-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(320px,86vw);margin-top:14px}
+
+.today-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.today-tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 8px 20px rgba(20,30,40,.045)}.today-tile span{display:block;color:var(--muted);font-size:11px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}.today-tile b{display:block;margin-top:5px;color:var(--primary);font-size:20px}.insight-list{display:flex;flex-direction:column;gap:10px}.insight-item{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);background:var(--input);border-radius:18px}.insight-item .emoji{width:32px;height:32px;border-radius:13px;background:var(--soft);display:grid;place-items:center;flex:none}.insight-item b{display:block;font-size:13px;color:var(--ink)}.insight-item small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.45}.empty-state{padding:18px;border:1px dashed var(--line);border-radius:20px;background:linear-gradient(180deg,var(--card),var(--input));text-align:left}.empty-state h3{margin:0 0 6px;color:var(--primary)}.empty-state p{margin:0;color:var(--muted);line-height:1.55}.bar{animation:progressFill .7s ease-out both}@keyframes progressFill{from{width:0}to{}}.lock-shell{width:min(360px,100%);display:flex;flex-direction:column;align-items:center}.lock-logo{width:72px;height:72px;border-radius:26px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;font-size:32px;margin-bottom:14px;box-shadow:0 16px 34px rgba(0,0,0,.18)}.lock-copy{color:rgba(255,255,255,.74);line-height:1.55;margin:0 0 16px;max-width:310px}.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:min(310px,100%);margin-top:10px}.pin-keypad button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;border-radius:18px;padding:15px 0;font-size:20px;font-weight:900}.pin-keypad button:active{transform:scale(.96);background:rgba(255,255,255,.18)}.lock-action{margin-top:12px;background:#C79A43!important;color:#1b1305!important}
+
+.subtle{font-size:12px;color:var(--muted);font-weight:700}.hidden-input{display:none}
+
+.sheet::before{
+  content:"";
+  display:block;
+  width:48px;
+  height:5px;
+  border-radius:999px;
+  background:var(--line);
+  margin:0 auto 14px;
+}
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:7px;
+  margin-top:12px;
+}
+.day-name{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:900;
+}
+.day-cell{
+  min-height:46px;
+  border-radius:16px;
+  background:var(--input);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  font-size:13px;
+  font-weight:850;
+  color:var(--primary);
+}
+.day-cell.muted{opacity:.35}
+.day-cell.today{background:var(--soft)}
+.day-cell.has-event{box-shadow:0 0 0 2px rgba(199,154,67,.22) inset}
+.dots{display:flex;gap:3px}
+.dot{width:5px;height:5px;border-radius:50%}
+.dot.bill{background:#C79A43}
+.dot.event{background:#123A5A}
+.dot.goal{background:#2F7D55}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:11px;
+  font-weight:900;
+  background:var(--soft);
+  color:var(--primary);
+}
+.upcoming-empty{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+}
+
+
+.category-chip-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:8px 0 14px;
+}
+.category-choice{
+  border:1px solid var(--line);
+  background:var(--input);
+  border-radius:16px;
+  padding:11px 12px;
+  font-weight:850;
+  color:var(--primary);
+  text-align:left;
+}
+.category-choice.active{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
+}
+
+.greeting-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
+  animation:pop .2s ease;
+}
+.greeting-icon{font-size:24px;margin-bottom:8px}
+.greeting-title{font-size:24px;font-weight:950;letter-spacing:-.05em;color:var(--primary);margin-bottom:6px}
+.greeting-subtitle{color:var(--muted);font-size:13px;line-height:1.55;font-weight:600}
+.theme-switcher{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.theme-switcher button{border:1px solid var(--line);background:var(--input);color:var(--muted);border-radius:14px;padding:10px;font-weight:900}
+.theme-switcher button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+body{transition:background .25s ease,color .25s ease}
+
+
+/* === DROS v8.4 UX Polish === */
+:root[data-theme="dark"]{--bg:#07111d;--card:#101b2a;--ink:#eef3f8;--muted:#b9c4d0;--primary:#e6c77b;--deep:#040913;--line:#26384d;--soft:#16263a;--input:#0d1725;--nav:rgba(10,20,33,.94)}
+button,.btn,.chip,.category-choice,.fab{transition:transform .18s ease,filter .18s ease,background .18s ease,opacity .18s ease}button:active,.btn:active,.chip:active,.fab:active{transform:scale(.98);filter:saturate(1.08)}
+.progress{height:12px;background:color-mix(in srgb,var(--soft) 78%,transparent);border:1px solid color-mix(in srgb,var(--line) 65%,transparent)}
+.bar{width:0%;transition:width .8s cubic-bezier(.22,1,.36,1);box-shadow:0 0 18px rgba(199,154,67,.28)}
+.progress-line{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:10px}.progress-line small{font-weight:900;color:var(--primary)}
+.empty-state{display:flex;gap:12px;align-items:flex-start}.empty-state .empty-icon{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:var(--soft);color:var(--primary);flex:none;font-size:20px}.empty-state .btn{margin-top:12px;padding:12px 14px;border-radius:15px;width:auto}.wealth-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.wealth-summary .today-tile{margin:0}.modal.active .sheet{animation:modalPop .2s ease both}@keyframes modalPop{from{opacity:.4;transform:translateY(24px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.quick-menu{display:grid;gap:10px}.quick-menu .row{margin:0}.fab.hidden{opacity:0;pointer-events:none;transform:scale(.8)}
+.pin-tools{display:flex;gap:8px;width:min(310px,100%);margin:8px 0}.pin-tools button{flex:1;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;border-radius:14px;padding:10px;font-weight:850}.pin-error{min-height:19px;color:#ffd4cd;font-size:12px;font-weight:800;margin:4px 0 0}.shake{animation:shake .28s ease}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}.success-pop{animation:successPop .35s ease}@keyframes successPop{50%{transform:scale(1.04)}}
+body.modal-open{overflow:hidden}.btn[disabled]{opacity:.45;pointer-events:none}
+
+</style>
+</head>
+<body>
+<div class="saved-pill" id="savedPill">Saved ✓</div>
+<div class="welcome" id="welcome"></div>
+<div class="cropper-page" id="cropperPage"></div>
+<div class="lock" id="lock"></div>
+<div class="app">
+<header>
+ <div class="eyebrow">Personal Operating System</div><h1>Dunia Raya OS</h1>
+ <div class="profile-top" onclick="profileForm()"><div class="avatar" id="headerAvatar">A</div><div class="profile-meta"><b id="headerName">Alpian</b><small id="headerProfession">Cloud Engineer</small><span class="title-badge" id="headerTitle">DROS Explorer</span></div></div>
+</header>
+
+<main id="home" class="screen active">
+ <div id="greetingCard"></div>
+ <div id="todayCommand"></div>
+ <div id="dashboardInsight"></div>
+ <div class="hero" onclick="lifeOverview()"><p>Net Worth / Saldo Tercatat</p><div class="balance" id="balance">Rp0</div><div class="hero-grid"><div class="hero-mini"><span>Income</span><b id="income">Rp0</b></div><div class="hero-mini"><span>Expense</span><b id="expense">Rp0</b></div></div></div>
+ <div id="upcomingCard"></div>
+ <div class="grid" id="mainPocketCards"></div>
+ <div class="section"><h2>Active Goals</h2><span>Goals</span></div><div id="homeGoals"></div>
+ <div class="section"><h2>Recent Journal</h2><span>Journal</span></div><div id="homeJournal"></div>
+</main>
+
+<main id="wealth" class="screen">
+ <div class="section"><h2>Wealth</h2><span>Pockets / Assets / Cashflow</span></div>
+ <div class="tabs"><button class="active" onclick="wealthTab='pockets';render()">Pockets</button><button onclick="wealthTab='assets';render()">Assets</button><button onclick="wealthTab='tx';render()">Transaksi</button></div>
+ <div id="wealthContent"></div>
+</main>
+
+<main id="goals" class="screen">
+ <div class="section"><h2>Goals</h2><span>Financial / Personal / Career</span></div>
+ <div class="tabs"><button class="active" onclick="goalTab='financial';render()">Financial</button><button onclick="goalTab='personal';render()">Personal</button><button onclick="goalTab='career';render()">Career</button></div>
+ <div id="goalContent"></div>
+</main>
+
+<main id="journal" class="screen"><div class="section"><h2>Journal</h2><span>Refleksi hidup</span></div><div id="journalList"></div></main>
+<main id="more" class="screen"><div class="section"><h2>More</h2><span>Tools</span></div><div id="moreContent"></div></main>
+
+<button class="fab" onclick="openAdd()">+</button>
+<nav>
+<button class="active" onclick="show('home',this)"><span id="iHome"></span><span>Home</span></button>
+<button onclick="show('wealth',this)"><span id="iWallet"></span><span>Wealth</span></button>
+<button onclick="show('goals',this)"><span id="iTarget"></span><span>Goals</span></button>
+<button onclick="show('journal',this)"><span id="iNote"></span><span>Journal</span></button>
+<button onclick="show('more',this)"><span id="iTools"></span><span>More</span></button>
+</nav>
+</div>
+<div class="modal" id="modal" onclick="closeModal()"><div class="sheet" id="sheet" onclick="event.stopPropagation()"></div></div>
+
+<script>
+/*
+============================================================
+DUNIA RAYA OS
+Personal Operating System
+
+Created by:
+Alpian Putra Sentosa
+
+Copyright (c) 2026 Alpian Putra Sentosa
+All Rights Reserved.
+
+Build: V8.2.2 Data Management Update
+Signature: DR-APS-2026
+============================================================
+*/
+
+/*
+============================================================
+DUNIA RAYA OS
+Personal Operating System
+
+Created by:
+Alpian Putra Sentosa
+
+Copyright (c) 2026 Alpian Putra Sentosa
+All Rights Reserved.
+
+Unauthorized copying, modification, redistribution,
+reverse engineering, sublicensing, or commercial use
+without explicit written permission is prohibited.
+
+Build: V8.2 Productivity
+Signature: DR-APS-2026
+============================================================
+*/
+
+
+function iconHome(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg>`}
+function iconWallet(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M4 7h15a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13"/><path d="M17 13h4"/><circle cx="17" cy="13" r="1"/></svg>`}
+function iconTarget(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>`}
+function iconNote(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M8 12h8M8 16h8M8 8h4"/></svg>`}
+function iconTools(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M4 7h16M4 17h16"/><circle cx="8" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></svg>`}
+function iconShield(){return `<svg fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z"/></svg>`}
+function iconFor(t){return t==='home'?iconHome():t==='wallet'?iconWallet():t==='shield'?iconShield():iconTarget()}
+iHome.innerHTML=iconHome();iWallet.innerHTML=iconWallet();iTarget.innerHTML=iconTarget();iNote.innerHTML=iconNote();iTools.innerHTML=iconTools();
+
+const fmt=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n||0));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const get=(k,d=[])=>JSON.parse(localStorage.getItem(k)||JSON.stringify(d));
+let tx=get('tx'), pockets=get('pockets'), goals=get('goalsV2'), journals=get('journals'), assets=get('assets'), events=get('eventsV82'), profile=get('profile',{name:'Alpian',profession:'Cloud Engineer',title:'DROS Explorer',photo:'',crop:{zoom:1,x:0,y:0}});
+profile={name:profile.name||'Alpian',profession:profile.profession||'Cloud Engineer',title:profile.title||'DROS Explorer',photo:profile.photo||'',crop:profile.crop||{zoom:1,x:0,y:0}};
+let wealthTab='pockets', goalTab='financial', saveTimer, cropState={image:'',x:0,y:0,zoom:1,isDown:false,startX:0,startY:0};
+const THEME_KEY='dr_theme';
+let currentTheme=localStorage.getItem(THEME_KEY)||'system';
+function effectiveTheme(mode=currentTheme){
+  if(mode==='system')return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  return mode;
+}
+function applyTheme(mode=currentTheme){
+  currentTheme=mode;
+  localStorage.setItem(THEME_KEY,mode);
+  document.documentElement.dataset.theme=effectiveTheme(mode);
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',effectiveTheme(mode)==='dark'?'#08111B':'#123A5A');
+}
+if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(currentTheme==='system'){applyTheme('system');renderThemeButtons();}})}
+applyTheme(currentTheme);
+function getTimePart(){
+  const h=new Date().getHours();
+  if(h>=4&&h<11)return {key:'morning',label:'Pagi',icon:'🌤️'};
+  if(h>=11&&h<15)return {key:'afternoon',label:'Siang',icon:'☀️'};
+  if(h>=15&&h<18)return {key:'evening',label:'Sore',icon:'🌇'};
+  return {key:'night',label:'Malam',icon:'🌙'};
+}
+const greetingMessages={
+  morning:['Semoga harimu berjalan ringan dan lancar.','Mari mulai hari ini selangkah demi selangkah.','Dunia Raya menunggumu untuk dijelajahi.','Semoga jalanmu hari ini dihantarkan dengan cepat dan selamat.','Mulai dari hal kecil; yang penting tetap bergerak.','Pagi ini adalah ruang baru untuk menata hidupmu.','Semoga keputusan kecil hari ini membawa arah yang baik.','Tenang saja, tidak semua harus selesai sekaligus.'],
+  afternoon:['Jangan lupa memberi jeda untuk dirimu.','Semoga semua urusanmu dimudahkan.','Kamu sudah berjalan cukup jauh hari ini.','Tetap tenang, satu hal selesai setelah satu hal lainnya.','Ambil napas sebentar, lalu lanjutkan dengan kepala jernih.','Siang ini cukup untuk menyelesaikan satu hal penting.','Tubuhmu juga bagian dari sistem yang perlu dijaga.','Pelan tetap berarti bergerak.'],
+  evening:['Terima kasih sudah bertahan hingga sore ini.','Nikmati tenangnya penghujung hari.','Satu hari lagi hampir selesai dengan baik.','Rapikan napasmu, Dunia Raya boleh melambat sebentar.','Sore adalah waktu yang baik untuk merapikan sisa pikiran.','Yang belum selesai bisa dilanjutkan esok hari.','Kamu tidak harus sempurna untuk tetap bertumbuh.','Setiap hari punya catatan kecilnya sendiri.'],
+  night:['Saatnya memberi ruang bagi dirimu untuk beristirahat.','Semoga hari ini meninggalkan pelajaran baik.','Semoga jalanmu dihantarkan dengan cepat dan selamat.','Malam ini cukupkan dulu; esok kita lanjutkan lagi.','Istirahat juga bagian dari perjalanan.','Dunia Raya boleh sunyi sebentar malam ini.','Simpan yang penting, lepaskan yang terlalu berat.','Semoga besok datang dengan hati yang lebih ringan.']
+};
+function pickDailyGreeting(key){
+  const list=greetingMessages[key]||greetingMessages.morning;
+  const d=new Date();
+  const seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()+key.length;
+  return list[seed%list.length];
+}
+function renderGreeting(){
+  if(!window.greetingCard)return;
+  const part=getTimePart();
+  const name=(profile.name||'Pengguna').trim()||'Pengguna';
+  greetingCard.innerHTML=`<div class="greeting-card"><div class="greeting-icon">${part.icon}</div><div class="greeting-title">Selamat ${part.label}, ${name}</div><div class="greeting-subtitle">${pickDailyGreeting(part.key)}</div></div>`;
+  
+}
+function totalLearningMinutes(){return goals.reduce((a,g)=>a+(g.logs||[]).reduce((x,l)=>x+Number(l.duration||0),0),0)}
+function activeGoalsCount(){return goals.filter(g=>(g.progress||0)<100).length}
+function journalThisMonth(){const now=new Date();return journals.filter(j=>{const parts=(j.date||'').split('/');if(parts.length<3)return false;return Number(parts[1])===now.getMonth()+1&&Number(parts[2])===now.getFullYear()}).length}
+function renderTodayCommand(){
+  if(!window.todayCommand)return;
+  const up=upcomingEvents(1)[0];
+  todayCommand.innerHTML=`<div class="section"><h2>Hari Ini</h2><span>Command Center</span></div><div class="today-grid"><div class="today-tile"><span>Goal Aktif</span><b>${activeGoalsCount()}</b></div><div class="today-tile"><span>Journal Bulan Ini</span><b>${journalThisMonth()}</b></div><div class="today-tile"><span>Learning Log</span><b>${totalLearningMinutes()}m</b></div><div class="today-tile"><span>Agenda</span><b>${up?formatEventDate(up.date):'Kosong'}</b></div></div>`;
+}
+function renderDashboardInsight(){
+  if(!window.dashboardInsight)return;
+  const insights=[];
+  const emergency=pockets.find(p=>p.id==='p_emergency')||pockets.find(p=>/darurat/i.test(p.title||''));
+  if(emergency&&emergency.target){const pr=Math.min(100,Math.round(emergency.current/emergency.target*100));insights.push({e:'💰',t:`Dana darurat mencapai ${pr}% target.`,n:pr<50?'Fondasi keamanan finansial masih bisa diperkuat pelan-pelan.':'Fondasi keamanan finansialmu mulai terbentuk.'});}
+  const bestGoal=[...goals].sort((a,b)=>(b.progress||0)-(a.progress||0))[0];
+  if(bestGoal)insights.push({e:'🎯',t:`Goal paling maju: ${bestGoal.title}.`,n:`Progress tercatat ${bestGoal.progress||0}%. Lanjutkan satu langkah kecil berikutnya.`});
+  const jm=journalThisMonth(); insights.push({e:'📝',t:jm?`Kamu menulis ${jm} jurnal bulan ini.`:'Belum ada jurnal bulan ini.',n:jm?'Catatan kecil membantu melihat arah perjalananmu.':'Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.'});
+  const lm=totalLearningMinutes(); insights.push({e:'📚',t:lm?`${lm} menit belajar sudah tercatat.`:'Belum ada learning log.',n:lm?'Setiap menit belajar sedang membangun versi dirimu di masa depan.':'Mulai dari 10 menit; yang penting tercatat.'});
+  dashboardInsight.innerHTML=`<div class="section"><h2>Insight Hari Ini</h2><span>Smart Summary</span></div><div class="card"><div class="insight-list">${insights.slice(0,4).map(i=>`<div class="insight-item"><div class="emoji">${i.e}</div><div><b>${i.t}</b><small>${i.n}</small></div></div>`).join('')}</div></div>`;
+}
+function renderThemeButtons(){
+  document.querySelectorAll('[data-theme-choice]').forEach(btn=>btn.classList.toggle('active',btn.dataset.themeChoice===currentTheme));
+}
+function setThemeChoice(mode){applyTheme(mode);renderThemeButtons();showSaved()}
+
+if(!pockets.length){pockets=[{id:'p_emergency',title:'Dana Darurat',target:50000000,current:20000000,icon:'shield',system:true},{id:'p_house',title:'Rumah',target:2000000000,current:140000000,icon:'home',system:true},{id:'p_invest',title:'Investasi',target:100000000,current:18000000,icon:'wallet',system:true},{id:'p_vehicle',title:'Kendaraan',target:600000000,current:0,icon:'target',system:true},{id:'p_education',title:'Pendidikan',target:10000000,current:0,icon:'target',system:true},{id:'p_experience',title:'Pengalaman',target:5000000,current:0,icon:'target',system:true}];save('pockets',pockets,false)}
+if(!events.length){events=[{id:'ev_wifi',type:'bill',title:'Bayar WiFi',date:todayISO(),time:'08:00',amount:230000,note:'Tagihan WiFi bulanan',remind:'1'},{id:'ev_review',type:'goal',title:'Review Keuangan Bulanan',date:todayISO(),time:'20:00',amount:0,note:'Cek cashflow, pockets, dan goals.',remind:'0'}];save('eventsV82',events,false)}
+if(!goals.length){goals=[{id:uid(),title:'Belajar Mengemudi',category:'personal',progress:35,logs:[],checklist:['Dasar','Parkir','Jalan Raya','Tol']},{id:uid(),title:'Cloud Engineer',category:'career',progress:20,logs:[],checklist:['Linux','Networking','Docker','Cloud Basics']},{id:uid(),title:'Financial Freedom',category:'financial',progress:12,logs:[],checklist:['Dana Darurat','Investasi Rutin','Passive Income']}];save('goalsV2',goals,false)}
+function save(k,v,notify=true){localStorage.setItem(k,JSON.stringify(v)); if(notify)showSaved()}
+function showSaved(){clearTimeout(saveTimer);savedPill.classList.add('show');saveTimer=setTimeout(()=>savedPill.classList.remove('show'),900)}
+function avatarHtml(){return profile.photo?`<img src="${profile.photo}" style="transform:translate(${profile.crop?.x||0}px,${profile.crop?.y||0}px) scale(${profile.crop?.zoom||1})">`:(profile.name||'A').trim()[0].toUpperCase()}
+function renderProfile(){headerName.textContent=profile.name||'Alpian';if(window.headerProfession)headerProfession.textContent=profile.profession||'Cloud Engineer';if(window.headerTitle)headerTitle.textContent=profile.title||'DROS Explorer';headerAvatar.innerHTML=avatarHtml();renderGreeting()}
+function show(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render()}
+function openSheet(html){sheet.innerHTML=html;modal.classList.add('active')}function closeModal(){modal.classList.remove('active')}
+function openAdd(){openSheet(`<div class="section" style="margin-top:0"><h2>Tambah Data</h2><span onclick="closeModal()" class="chip">×</span></div><button class="btn" onclick="formTx()">Transaksi</button><br><br><button class="btn alt" onclick="formPocket()">Pocket</button><br><br><button class="btn alt" onclick="formGoal()">Goal</button><br><br><button class="btn alt" onclick="formJournal()">Journal</button><br><br><button class="btn alt" onclick="formAsset()">Asset</button>`)}
+function profileForm(){openSheet(`<div class="section" style="margin-top:0"><h2>Profile</h2><span onclick="closeModal()" class="chip">×</span></div>
+<div class="crop-wrap" style="width:110px;height:110px;border-radius:34px;overflow:hidden;margin:10px auto;background:var(--soft);display:grid;place-items:center" onclick="document.getElementById('hiddenPhotoInput').click()">${avatarHtml()}</div>
+<p style="text-align:center;margin-bottom:14px;color:var(--muted)">Tap avatar atau tombol di bawah untuk mengganti foto.</p>
+<input id="hiddenPhotoInput" class="hidden-input" type="file" accept="image/*" onchange="startCropFromFile(event)">
+<button class="btn alt" onclick="document.getElementById('hiddenPhotoInput').click()">Ganti Foto</button>
+<br><br>
+<label>Nama</label><input value="${profile.name||''}" oninput="profile.name=this.value;save('profile',profile);renderProfile()">
+<label>Profesi</label><input value="${profile.profession||'Cloud Engineer'}" placeholder="Cloud Engineer" oninput="profile.profession=this.value;save('profile',profile);renderProfile()">
+<label>DROS Title</label><input value="${profile.title||'DROS Explorer'}" placeholder="DROS Explorer" oninput="profile.title=this.value;save('profile',profile);renderProfile()">
+<button class="btn alt" onclick="profile.photo='';profile.crop={zoom:1,x:0,y:0};save('profile',profile);renderProfile();profileForm()">Hapus Foto</button>`)}
+function startCropFromFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{cropState={image:r.result,x:0,y:0,zoom:1,isDown:false,startX:0,startY:0};openCropper()};r.readAsDataURL(f)}
+function openCropper(){
+ cropperPage.innerHTML=`<div class="eyebrow" style="color:rgba(255,255,255,.68)">Avatar editor</div><h1 style="color:white;margin:6px 0">Crop Foto</h1><p style="color:rgba(255,255,255,.68);margin:0">Drag foto, atur zoom, lalu gunakan.</p>
+ <div class="crop-stage" id="cropStage"><img id="cropImg" src="${cropState.image}"></div>
+ <label style="color:rgba(255,255,255,.72)">Zoom</label><input class="range" id="zoomRange" type="range" min="0.7" max="3" step="0.01" value="1" oninput="cropState.zoom=Number(this.value);updateCrop()">
+ <div class="crop-preview" id="cropPreview"><img src="${cropState.image}"></div>
+ <div class="crop-actions"><button class="btn alt" onclick="cropperPage.classList.remove('active')">Batal</button><button class="btn" style="background:#C79A43;color:#1b1305" onclick="saveCroppedAvatar()">Gunakan Foto</button></div>`;
+ cropperPage.classList.add('active');
+ const stage=document.getElementById('cropStage');
+ stage.addEventListener('pointerdown',e=>{cropState.isDown=true;cropState.startX=e.clientX-cropState.x;cropState.startY=e.clientY-cropState.y;stage.setPointerCapture(e.pointerId)});
+ stage.addEventListener('pointermove',e=>{if(!cropState.isDown)return;cropState.x=e.clientX-cropState.startX;cropState.y=e.clientY-cropState.startY;updateCrop()});
+ stage.addEventListener('pointerup',()=>cropState.isDown=false);
+ updateCrop();
+}
+function updateCrop(){const img=document.getElementById('cropImg'); if(!img)return; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover'; img.style.transform=`translate(calc(-50% + ${cropState.x}px), calc(-50% + ${cropState.y}px)) scale(${cropState.zoom})`; const prev=document.querySelector('#cropPreview img'); if(prev){prev.style.transform=`translate(${cropState.x/5}px,${cropState.y/5}px) scale(${cropState.zoom})`;prev.style.transformOrigin='center';}}
+function saveCroppedAvatar(){profile.photo=cropState.image;profile.crop={x:cropState.x/5,y:cropState.y/5,zoom:cropState.zoom};save('profile',profile);renderProfile();cropperPage.classList.remove('active');closeModal();showWelcome()}
+function lifeOverview(){
+ const inc=tx.filter(t=>t.type==='income').reduce((a,b)=>a+b.amount,0), exp=tx.filter(t=>t.type==='expense').reduce((a,b)=>a+b.amount,0), assetVal=assets.reduce((a,b)=>a+b.value,0), totalPocket=pockets.reduce((a,b)=>a+b.current,0);
+ const learningMinutes=goals.reduce((a,g)=>a+(g.logs||[]).reduce((x,l)=>x+l.duration,0),0);
+ const freedomTarget=Math.max(1,(exp||10000000)*12/0.06), freedomProgress=Math.min(100,Math.round((assetVal+totalPocket)/freedomTarget*100));
+ openSheet(`<div class="section" style="margin-top:0"><h2>Life Overview</h2><span onclick="closeModal()" class="chip">×</span></div>
+ <div class="hero" style="margin-bottom:14px;box-shadow:none"><p>Total overview</p><div class="balance">${fmt(inc-exp+assetVal)}</div><div class="hero-grid"><div class="hero-mini"><span>Assets</span><b>${fmt(assetVal)}</b></div><div class="hero-mini"><span>Pockets</span><b>${fmt(totalPocket)}</b></div></div></div>
+ <div class="grid"><div class="card"><h3>Freedom Progress</h3><div class="big">${freedomProgress}%</div><div class="progress"><div class="bar" style="width:${freedomProgress}%"></div></div><p>Estimasi menuju freedom number</p></div><div class="card"><h3>Cashflow</h3><div class="big">${fmt(inc-exp)}</div><p>Income - expense tercatat</p></div></div>
+ <div class="card"><h3>Performance Review</h3><p>Wealth Score: ${Math.min(100,Math.round((totalPocket+assetVal)/100000000*100))}/100</p><p>Goal Activity: ${goals.length} goal aktif</p><p>Learning Time: ${Math.round(learningMinutes/60)} jam tercatat</p></div>
+ <div class="card"><h3>Analytics Ringkas</h3><div class="progress"><div class="bar" style="width:${Math.min(100,Math.round(inc/(inc+exp||1)*100))}%"></div></div><p>Rasio pemasukan terhadap total cashflow tercatat</p></div>
+ <div class="card"><h3>Insights</h3><p>${exp>inc?'Pengeluaran lebih besar dari pemasukan tercatat. Perlu review cashflow.':'Cashflow tercatat masih positif.'}</p><p>${learningMinutes<60?'Belum banyak sesi belajar tercatat. Coba log belajar dari Goals.':'Aktivitas belajar sudah mulai tercatat.'}</p></div>`);
+}
+function pocketDetail(id){const p=pockets.find(x=>x.id===id);if(!p)return;const pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;openSheet(`<div class="section" style="margin-top:0"><h2>${p.title}</h2><span onclick="closeModal()" class="chip">×</span></div><div class="card"><h3>Progress</h3><div class="big">${pr}%</div><div class="progress"><div class="bar" style="width:${pr}%"></div></div><p>${fmt(p.current)} / ${fmt(p.target)}</p></div><button class="btn" onclick="addPocket('${p.id}')">Tambah Dana</button><br><br><button class="btn alt" onclick="formPocket('${p.id}')">Edit Target</button><br><br>${p.system?'<p class="subtle">Pocket permanen tidak bisa dihapus.</p>':`<button class="btn danger" onclick="delPocket('${p.id}');closeModal()">Hapus Pocket</button>`}<div class="card"><h3>Riwayat</h3><p>Riwayat setoran detail akan masuk di versi berikutnya.</p></div>`)}
+
+function selectPocketCategory(value){
+  const input=document.getElementById('pIcon');
+  if(input) input.value=value;
+  document.querySelectorAll('.category-choice').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.value===value);
+  });
+}
+
+function formTx(id=null){let o=id?tx.find(x=>x.id===id):{type:'income',amount:'',category:'',note:''};openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Transaksi</h2><span onclick="closeModal()" class="chip">×</span></div><label>Tipe</label><select id="fType"><option value="income" ${o.type==='income'?'selected':''}>Pemasukan</option><option value="expense" ${o.type==='expense'?'selected':''}>Pengeluaran</option></select><label>Nominal</label><input id="fAmount" type="number" value="${o.amount||''}"><label>Kategori</label><input id="fCategory" value="${o.category||''}"><label>Catatan</label><input id="fNote" value="${o.note||''}"><button class="btn" onclick="saveTx('${id||''}')">Simpan Perubahan</button>`)}
+function saveTx(id){let o={id:id||uid(),type:fType.value,amount:Number(fAmount.value||0),category:fCategory.value||'Lainnya',note:fNote.value||'',date:new Date().toLocaleDateString('id-ID')};tx=id?tx.map(x=>x.id===id?o:x):[o,...tx];save('tx',tx);closeModal();render()}
+function delTx(id){if(confirm('Hapus transaksi?')){tx=tx.filter(x=>x.id!==id);save('tx',tx);render()}}
+function formPocket(id=null){let o=id?pockets.find(x=>x.id===id):{title:'',target:'',current:'',icon:'target',system:false};openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Pocket</h2><span onclick="closeModal()" class="chip">×</span></div><label>Kategori</label>
+<input id="pIcon" type="hidden" value="${o.icon||'target'}">
+<div class="category-chip-grid">
+  <button type="button" class="category-choice" data-value="target" onclick="selectPocketCategory('target')">🎯 Target</button>
+  <button type="button" class="category-choice" data-value="home" onclick="selectPocketCategory('home')">🏠 Rumah</button>
+  <button type="button" class="category-choice" data-value="shield" onclick="selectPocketCategory('shield')">🛡 Dana Darurat</button>
+  <button type="button" class="category-choice" data-value="wallet" onclick="selectPocketCategory('wallet')">📈 Investasi</button>
+</div><label>Nama</label><input id="pTitle" value="${o.title||''}"><label>Target</label><input id="pTarget" type="number" value="${o.target||''}"><label>Terkumpul</label><input id="pCurrent" type="number" value="${o.current||''}"><button class="btn" onclick="savePocket('${id||''}')">Simpan Perubahan</button>`);pIcon.value=o.icon||'target';setTimeout(()=>selectPocketCategory(pIcon.value),0)}
+function savePocket(id){let old=id?pockets.find(x=>x.id===id):{};let o={id:id||uid(),icon:pIcon.value,title:pTitle.value||'Pocket',target:Number(pTarget.value||0),current:Number(pCurrent.value||0),system:!!old.system};pockets=id?pockets.map(x=>x.id===id?o:x):[o,...pockets];save('pockets',pockets);closeModal();render()}
+function addPocket(id){let p=pockets.find(x=>x.id===id);openSheet(`<div class="section" style="margin-top:0"><h2>Tambah Dana</h2><span onclick="closeModal()" class="chip">×</span></div><p>${p.title}</p><label>Nominal</label><input id="addAmount" type="number"><button class="btn" onclick="savePocketMoney('${id}')">Simpan</button>`)}
+function savePocketMoney(id){let a=Number(addAmount.value||0);pockets=pockets.map(p=>p.id===id?{...p,current:p.current+a}:p);save('pockets',pockets);closeModal();render()}
+function delPocket(id){let p=pockets.find(x=>x.id===id);if(p.system)return alert('Pocket permanen tidak bisa dihapus.');if(confirm('Hapus pocket?')){pockets=pockets.filter(x=>x.id!==id);save('pockets',pockets);render()}}
+function formGoal(id=null){let o=id?goals.find(x=>x.id===id):{title:'',category:goalTab,progress:0,logs:[],checklist:[]};openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Goal</h2><span onclick="closeModal()" class="chip">×</span></div><label>Judul</label><input id="gTitle" value="${o.title||''}"><label>Kategori</label><select id="gCat"><option value="financial">Financial</option><option value="personal">Personal</option><option value="career">Career</option></select><label>Progress %</label><input id="gProg" type="number" value="${o.progress||0}"><button class="btn" onclick="saveGoal('${id||''}')">Simpan Perubahan</button><br><br>${id?`<button class="btn alt" onclick="logGoal('${id}')">Tambah Learning Log</button>`:''}`);gCat.value=o.category||goalTab}
+function saveGoal(id){let old=id?goals.find(x=>x.id===id):{logs:[],checklist:[]};let o={...old,id:id||uid(),title:gTitle.value||'Goal',category:gCat.value,progress:Number(gProg.value||0)};goals=id?goals.map(x=>x.id===id?o:x):[o,...goals];save('goalsV2',goals);closeModal();render()}
+function logGoal(id){openSheet(`<div class="section" style="margin-top:0"><h2>Learning Log</h2><span onclick="closeModal()" class="chip">×</span></div><label>Durasi menit</label><input id="lDur" type="number"><label>Materi</label><input id="lTopic"><label>Catatan</label><textarea id="lNote"></textarea><button class="btn" onclick="saveLog('${id}')">Simpan</button>`)}
+function saveLog(id){goals=goals.map(g=>g.id===id?{...g,logs:[{date:new Date().toLocaleDateString('id-ID'),duration:Number(lDur.value||0),topic:lTopic.value,note:lNote.value},...(g.logs||[])]}:g);save('goalsV2',goals);closeModal();render()}
+function delGoal(id){if(confirm('Hapus goal?')){goals=goals.filter(x=>x.id!==id);save('goalsV2',goals);render()}}
+function formJournal(id=null){let o=id?journals.find(x=>x.id===id):{title:'',content:''};openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Journal</h2><span onclick="closeModal()" class="chip">×</span></div><label>Judul</label><input id="jTitle" value="${o.title||''}"><label>Isi</label><textarea id="jContent">${o.content||''}</textarea><button class="btn" onclick="saveJournal('${id||''}')">Simpan Perubahan</button>`)}
+function saveJournal(id){let o={id:id||uid(),title:jTitle.value||'Tanpa Judul',content:jContent.value||'',date:new Date().toLocaleDateString('id-ID')};journals=id?journals.map(x=>x.id===id?o:x):[o,...journals];save('journals',journals);closeModal();render()}
+function delJournal(id){if(confirm('Hapus journal?')){journals=journals.filter(x=>x.id!==id);save('journals',journals);render()}}
+function formAsset(id=null){let o=id?assets.find(x=>x.id===id):{title:'',type:'SBN',value:'',income:''};openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Asset</h2><span onclick="closeModal()" class="chip">×</span></div><label>Nama</label><input id="aTitle" value="${o.title||''}"><label>Tipe</label><select id="aType"><option>SBN</option><option>Deposito</option><option>Obligasi</option><option>Saham</option><option>Kas</option><option>Bisnis</option></select><label>Nilai</label><input id="aValue" type="number" value="${o.value||''}"><label>Income/bulan</label><input id="aIncome" type="number" value="${o.income||''}"><button class="btn" onclick="saveAsset('${id||''}')">Simpan Perubahan</button>`);aType.value=o.type||'SBN'}
+function saveAsset(id){let o={id:id||uid(),title:aTitle.value||'Asset',type:aType.value,value:Number(aValue.value||0),income:Number(aIncome.value||0)};assets=id?assets.map(x=>x.id===id?o:x):[o,...assets];save('assets',assets);closeModal();render()}
+function delAsset(id){if(confirm('Hapus asset?')){assets=assets.filter(x=>x.id!==id);save('assets',assets);render()}}
+function forceLock(){renderLock();lock.classList.remove('hidden')}async function hashPin(pin){let b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pin));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+function renderLock(){
+ let has=localStorage.getItem('pinHash');
+ const title=has?'Dunia Raya OS':'Buat PIN';
+ const eyebrow=has?'Secure Mode':'Setup Security';
+ const copy=has?'Masukkan PIN 6 digit untuk membuka ruang personalmu.':'PIN digunakan untuk melindungi data pribadi, keuangan, journal, dan seluruh ruang Dunia Raya OS.';
+ const action=has?'Unlock':'Simpan PIN';
+ lock.innerHTML=`<div class="lock-shell"><div class="lock-logo">🌍</div><div class="eyebrow" style="color:rgba(255,255,255,.65)">${eyebrow}</div><h1>${title}</h1><p class="lock-copy">${copy}</p><input class="pinbox" id="pinInput" type="password" inputmode="none" maxlength="6" placeholder="••••••" readonly><div class="pin-keypad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button onclick="pinDigit('${n}')">${n}</button>`).join('')}<button onclick="pinBack()">⌫</button><button onclick="pinDigit('0')">0</button><button onclick="submitPin()">✓</button></div><button class="btn lock-action" onclick="submitPin()">${action}</button></div>`
+}
+function pinDigit(n){if(!window.pinInput)return;pinInput.value=(pinInput.value+n).slice(0,6)}
+function pinBack(){if(!window.pinInput)return;pinInput.value=pinInput.value.slice(0,-1)}
+function submitPin(){localStorage.getItem('pinHash')?loginPin():createPin()}
+async function createPin(){let p=pinInput.value;if(p.length!==6)return alert('PIN harus 6 digit');localStorage.setItem('pinHash',await hashPin(p));lock.classList.add('hidden');showWelcome()}
+async function loginPin(){let p=pinInput.value;if(await hashPin(p)===localStorage.getItem('pinHash')){lock.classList.add('hidden');showWelcome()}else alert('PIN salah')}
+function showWelcome(){const part=getTimePart();welcome.innerHTML=`<div class="avatar">${avatarHtml()}</div><h1>Selamat ${part.label}, ${profile.name||'Alpian'}</h1><p>${pickDailyGreeting(part.key)}</p>`;welcome.classList.add('active');setTimeout(()=>welcome.classList.remove('active'),1400)}
+function exportData(){let data={tx,pockets,goals,journals,assets,profile,theme:currentTheme};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dunia-raya-os-backup.json';a.click()}
+function calcFN(){let e=Number(fnExpense.value||0),r=Number(fnReturn.value||0)/100;fnResult.textContent=e&&r?'Dana dibutuhkan: '+fmt(e*12/r):'Isi data dulu.'}
+
+function todayISO(){
+  const d=new Date();
+  const m=String(d.getMonth()+1).padStart(2,'0');
+  const day=String(d.getDate()).padStart(2,'0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+function daysBetween(dateISO){
+  const a=new Date(todayISO()+"T00:00:00");
+  const b=new Date(dateISO+"T00:00:00");
+  return Math.ceil((b-a)/(1000*60*60*24));
+}
+function formatEventDate(dateISO){
+  const diff=daysBetween(dateISO);
+  if(diff===0)return "Hari ini";
+  if(diff===1)return "Besok";
+  if(diff>1)return `${diff} hari lagi`;
+  if(diff===-1)return "Kemarin";
+  return `${Math.abs(diff)} hari lalu`;
+}
+function eventTypeLabel(t){
+  return t==='bill'?'Tagihan':t==='goal'?'Goal Review':'Acara';
+}
+function eventDot(t){
+  return `<span class="dot ${t==='bill'?'bill':t==='goal'?'goal':'event'}"></span>`;
+}
+function upcomingEvents(limit=4){
+  return [...events]
+    .filter(e=>daysBetween(e.date)>=0)
+    .sort((a,b)=>a.date.localeCompare(b.date))
+    .slice(0,limit);
+}
+function smartReminders(){
+  const list=[];
+  const learningMinutes=goals.reduce((a,g)=>a+(g.logs||[]).reduce((x,l)=>x+l.duration,0),0);
+  if(learningMinutes===0) list.push({type:'goal',title:'Mulai learning log pertama',note:'Setiap menit belajar akan membangun versi dirimu di masa depan.',date:todayISO()});
+  const emergency=pockets.find(p=>p.id==='p_emergency');
+  if(emergency && emergency.current/emergency.target<0.5) list.push({type:'goal',title:'Dana Darurat belum 50%',note:'Fondasi keamanan finansial masih perlu diperkuat.',date:todayISO()});
+  return list.slice(0,2);
+}
+function renderUpcomingCard(){
+  const up=upcomingEvents(3);
+  const smart=smartReminders();
+  let rows='';
+  if(up.length){
+    rows += up.map(e=>`<div class="row clickable" onclick="eventDetail('${e.id}')"><div class="left"><div class="icon">${iconNote()}</div><div><b>${e.title}</b><small>${formatEventDate(e.date)} • ${eventTypeLabel(e.type)} ${e.amount?`• ${fmt(e.amount)}`:''}</small></div></div><span class="badge">${eventTypeLabel(e.type)}</span></div>`).join('');
+  }
+  if(!up.length && !smart.length){
+    rows = `<div class="empty-state"><h3>Tidak ada agenda dekat.</h3><p>Hari ini terasa lebih lapang. Kamu bisa menambah reminder dari Calendar Hub saat ada hal penting yang perlu dijaga.</p></div>`;
+  }
+  if(smart.length){
+    rows += smart.map(s=>`<div class="row"><div class="left"><div class="icon">${iconTarget()}</div><div><b>${s.title}</b><small>${s.note}</small></div></div><span class="badge">Smart</span></div>`).join('');
+  }
+  if(document.getElementById('upcomingCard')){
+    upcomingCard.innerHTML = `<div class="section"><h2>Upcoming</h2><span onclick="calendarHub()">Calendar</span></div><div class="card">${rows}</div>`;
+  }
+}
+function calendarHub(year=new Date().getFullYear(), month=new Date().getMonth()){
+  const monthName=new Intl.DateTimeFormat('id-ID',{month:'long',year:'numeric'}).format(new Date(year,month,1));
+  const first=new Date(year,month,1);
+  const last=new Date(year,month+1,0).getDate();
+  const start=(first.getDay()+6)%7;
+  const names=['Sen','Sel','Rab','Kam','Jum','Sab','Min'];
+  let cells=names.map(n=>`<div class="day-name">${n}</div>`).join('');
+  for(let i=0;i<start;i++) cells+=`<div class="day-cell muted"></div>`;
+  for(let d=1;d<=last;d++){
+    const iso=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const ev=events.filter(e=>e.date===iso);
+    const isToday=iso===todayISO();
+    cells+=`<div class="day-cell ${ev.length?'has-event':''} ${isToday?'today':''}" onclick="dayDetail('${iso}')"><span>${d}</span><div class="dots">${ev.slice(0,3).map(e=>eventDot(e.type)).join('')}</div></div>`;
+  }
+  openSheet(`<div class="section" style="margin-top:0"><h2>Calendar</h2><span onclick="closeModal()" class="chip">×</span></div>
+  <div class="row"><button class="chip" onclick="calendarHub(${month===0?year-1:year},${month===0?11:month-1})">‹</button><b>${monthName}</b><button class="chip" onclick="calendarHub(${month===11?year+1:year},${month===11?0:month+1})">›</button></div>
+  <div class="calendar-grid">${cells}</div>
+  <br><button class="btn" onclick="formEvent()">Tambah Reminder</button>
+  <br><br><button class="btn alt" onclick="requestNotificationPermission()">Aktifkan Notifikasi Browser</button>
+  <p class="subtle">Catatan: notifikasi browser bergantung izin perangkat/browser. Untuk APK nanti bisa dibuat local notification native.</p>`);
+}
+function dayDetail(dateISO){
+  const ev=events.filter(e=>e.date===dateISO).sort((a,b)=>(a.time||'').localeCompare(b.time||''));
+  const content=ev.length?ev.map(e=>`<div class="row clickable" onclick="eventDetail('${e.id}')"><div class="left"><div class="icon">${iconNote()}</div><div><b>${e.title}</b><small>${e.time||'Tanpa jam'} • ${eventTypeLabel(e.type)} ${e.amount?`• ${fmt(e.amount)}`:''}</small></div></div><b>›</b></div>`).join(''):`<div class="empty-state"><h3>Belum ada agenda.</h3><p>Tanggal ini masih kosong. Tambahkan agenda jika ada sesuatu yang ingin kamu jaga.</p></div>`;
+  openSheet(`<div class="section" style="margin-top:0"><h2>${new Intl.DateTimeFormat('id-ID',{dateStyle:'full'}).format(new Date(dateISO+'T00:00:00'))}</h2><span onclick="closeModal()" class="chip">×</span></div>${content}<button class="btn" onclick="formEvent(null,'${dateISO}')">Tambah Agenda</button>`);
+}
+function formEvent(id=null, presetDate=null){
+  const e=id?events.find(x=>x.id===id):{type:'event',title:'',date:presetDate||todayISO(),time:'08:00',amount:'',note:'',remind:'1'};
+  openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Tambah'} Reminder</h2><span onclick="closeModal()" class="chip">×</span></div>
+  <label>Jenis</label><select id="evType"><option value="event">Acara</option><option value="bill">Tagihan</option><option value="goal">Goal Review</option></select>
+  <label>Judul</label><input id="evTitle" value="${e.title||''}" placeholder="Bayar WiFi / Kursus Mengemudi">
+  <label>Tanggal</label><input id="evDate" type="date" value="${e.date||todayISO()}">
+  <label>Jam</label><input id="evTime" type="time" value="${e.time||'08:00'}">
+  <label>Nominal (opsional)</label><input id="evAmount" type="number" value="${e.amount||''}">
+  <label>Ingatkan</label><select id="evRemind"><option value="0">Hari-H</option><option value="1">H-1</option><option value="3">H-3</option></select>
+  <label>Catatan</label><textarea id="evNote">${e.note||''}</textarea>
+  <button class="btn" onclick="saveEvent('${id||''}')">Simpan Perubahan</button>`);
+  evType.value=e.type||'event'; evRemind.value=e.remind||'1';
+}
+function saveEvent(id){
+  const obj={id:id||uid(),type:evType.value,title:evTitle.value||'Reminder',date:evDate.value||todayISO(),time:evTime.value||'',amount:Number(evAmount.value||0),note:evNote.value||'',remind:evRemind.value||'1',createdAt:new Date().toISOString()};
+  events=id?events.map(x=>x.id===id?obj:x):[obj,...events];
+  save('eventsV82',events); closeModal(); render();
+}
+function eventDetail(id){
+  const e=events.find(x=>x.id===id); if(!e)return;
+  openSheet(`<div class="section" style="margin-top:0"><h2>${e.title}</h2><span onclick="closeModal()" class="chip">×</span></div>
+  <div class="card"><h3>${eventTypeLabel(e.type)}</h3><p>${new Intl.DateTimeFormat('id-ID',{dateStyle:'full'}).format(new Date(e.date+'T00:00:00'))} ${e.time?`• ${e.time}`:''}</p>${e.amount?`<p>${fmt(e.amount)}</p>`:''}<p>${e.note||'Tidak ada catatan.'}</p></div>
+  <button class="btn" onclick="formEvent('${e.id}')">Edit</button><br><br>
+  <button class="btn danger" onclick="deleteEvent('${e.id}')">Hapus</button>`);
+}
+function deleteEvent(id){if(confirm('Hapus reminder ini?')){events=events.filter(e=>e.id!==id);save('eventsV82',events);closeModal();render()}}
+function requestNotificationPermission(){
+  if(!('Notification' in window)) return alert('Browser ini belum mendukung Notification API.');
+  Notification.requestPermission().then(p=>{
+    if(p==='granted'){
+      new Notification('Dunia Raya OS', {body:'Notifikasi aktif. Reminder akan ditampilkan saat aplikasi dibuka.'});
+    }else alert('Izin notifikasi belum diberikan.');
+  });
+}
+function checkDueNotifications(){
+  if(!('Notification' in window) || Notification.permission!=='granted') return;
+  const key='notified_'+todayISO();
+  if(localStorage.getItem(key)) return;
+  const due=events.filter(e=>daysBetween(e.date)===0 || daysBetween(e.date)===Number(e.remind||999));
+  if(due.length){
+    new Notification('Dunia Raya OS', {body:`Ada ${due.length} reminder penting. Buka aplikasi untuk melihat detail.`});
+    localStorage.setItem(key,'1');
+  }
+}
+
+
+function importBackup(){
+ const input=document.createElement('input');
+ input.type='file';
+ input.accept='.json,application/json';
+ input.onchange=(e)=>{
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+   try{
+    const data=JSON.parse(reader.result);
+    if(!confirm('Import backup? Data saat ini akan ditimpa.')) return;
+    Object.keys(data).forEach(k=>localStorage.setItem(k, JSON.stringify(data[k])));
+    alert('Backup berhasil dipulihkan.');
+    location.reload();
+   }catch(err){alert('File backup tidak valid');}
+  };
+  reader.readAsText(file);
+ };
+ input.click();
+}
+function clearAllData(){
+ const text=prompt('Ketik RESET untuk menghapus data aplikasi');
+ if(text!=='RESET') return;
+ const pin=localStorage.getItem('pin');
+ localStorage.clear();
+ if(pin) localStorage.setItem('pin',pin);
+ alert('Data berhasil dihapus');
+ location.reload();
+}
+function factoryReset(){
+ const text=prompt('Ketik FACTORY RESET');
+ if(text!=='FACTORY RESET') return;
+ localStorage.clear();
+ alert('Factory reset berhasil');
+ location.reload();
+}
+
+function render(){
+renderProfile();
+renderUpcomingCard();
+renderTodayCommand();
+renderDashboardInsight();
+let inc=tx.filter(t=>t.type==='income').reduce((a,b)=>a+b.amount,0), exp=tx.filter(t=>t.type==='expense').reduce((a,b)=>a+b.amount,0), assetVal=assets.reduce((a,b)=>a+b.value,0);
+balance.textContent=fmt(inc-exp+assetVal);income.textContent=fmt(inc);expense.textContent=fmt(exp);
+mainPocketCards.innerHTML=pockets.slice(0,2).map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3><div class="progress"><div class="bar" style="width:${pr}%"></div></div><p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join('');
+homeGoals.innerHTML=goals.length?goals.slice(0,3).map(g=>`<div class="row clickable" onclick="formGoal('${g.id}')"><div class="left"><div class="icon">${iconTarget()}</div><div><b>${g.title}</b><small>${g.category} • ${g.progress||0}% • ${(g.logs||[]).reduce((a,b)=>a+b.duration,0)} menit</small></div></div><b>${g.progress||0}%</b></div>`).join(''):`<div class="empty-state"><h3>Belum ada goal aktif.</h3><p>Tujuan besar dimulai dari langkah kecil pertama. Tap + untuk membuat arah baru.</p></div>`;
+homeJournal.innerHTML=journals[0]?`<div class="card"><h3>${journals[0].title}</h3><p>${journals[0].content}</p></div>`:`<div class="empty-state"><h3>Belum ada catatan hari ini.</h3><p>Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.</p></div>`;
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); 
+if(document.getElementById('wealth').classList.contains('active')) document.querySelectorAll('#wealth .tabs button')[wealthTab==='pockets'?0:wealthTab==='assets'?1:2].classList.add('active');
+if(document.getElementById('goals').classList.contains('active')) document.querySelectorAll('#goals .tabs button')[goalTab==='financial'?0:goalTab==='personal'?1:2].classList.add('active');
+wealthContent.innerHTML=wealthTab==='pockets'?pockets.map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3><div class="progress"><div class="bar" style="width:${pr}%"></div></div><p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join(''):wealthTab==='assets'?(assets.length?assets.map(a=>`<div class="row"><div class="left"><div class="icon">${iconWallet()}</div><div><b>${a.title}</b><small>${a.type} • ${fmt(a.value)} • income ${fmt(a.income)}/bln</small></div></div><div class="actions"><button class="chip" onclick="formAsset('${a.id}')">Edit</button><button class="chip" onclick="delAsset('${a.id}')">Hapus</button></div></div>`).join(''):`<div class="empty-state"><h3>Belum ada asset.</h3><p>Asset pertamamu bisa menjadi fondasi peta kekayaan pribadi di DROS.</p></div>`):(tx.length?tx.map(t=>`<div class="row"><div class="left"><div class="icon">${iconWallet()}</div><div><b>${t.category}</b><small>${t.date} ${t.note?'• '+t.note:''}</small></div></div><div><div class="${t.type==='income'?'income':'expense'}">${t.type==='income'?'+':'-'}${fmt(t.amount)}</div><div class="actions"><button class="chip" onclick="formTx('${t.id}')">Edit</button><button class="chip" onclick="delTx('${t.id}')">Hapus</button></div></div></div>`).join(''):`<div class="empty-state"><h3>Belum ada transaksi.</h3><p>Catatan kecil hari ini akan membuat cashflow lebih mudah dipahami nanti.</p></div>`);
+goalContent.innerHTML=goals.filter(g=>g.category===goalTab).map(g=>`<div class="card"><h3>${g.title}</h3><div class="progress"><div class="bar" style="width:${g.progress||0}%"></div></div><p>${g.progress||0}% • ${(g.logs||[]).reduce((a,b)=>a+b.duration,0)} menit belajar</p><br><button class="chip" onclick="formGoal('${g.id}')">Edit</button> <button class="chip" onclick="logGoal('${g.id}')">Log Belajar</button> <button class="chip" onclick="delGoal('${g.id}')">Hapus</button>${(g.logs||[]).slice(0,2).map(l=>`<p style="margin-top:10px">${l.date} • ${l.duration} menit • ${l.topic}</p>`).join('')}</div>`).join('')||`<div class="empty-state"><h3>Belum ada goal di kategori ini.</h3><p>Tujuan besar dimulai dari langkah kecil pertama.</p></div>`;
+journalList.innerHTML=journals.length?journals.map(j=>`<div class="card"><h3>${j.title}</h3><p>${j.content}</p><p style="margin-top:10px;font-size:12px">${j.date}</p><br><button class="chip" onclick="formJournal('${j.id}')">Edit</button> <button class="chip" onclick="delJournal('${j.id}')">Hapus</button></div>`).join(''):`<div class="empty-state"><h3>Belum ada journal.</h3><p>Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.</p></div>`;
+moreContent.innerHTML=`<div class="row clickable" onclick="calendarHub()"><div class="left"><div class="icon">${iconNote()}</div><div><b>Calendar Hub</b><small>Agenda, tagihan, dan reminder</small></div></div><b>›</b></div><div class="row clickable" onclick="profileForm()"><div class="left"><div class="icon">${iconHome()}</div><div><b>Profile</b><small>Edit nama dan foto</small></div></div><b>›</b></div><div class="card"><h3>Theme</h3><p>Pilih tampilan Dunia Raya OS.</p><div class="theme-switcher"><button data-theme-choice="light" onclick="setThemeChoice('light')">☀️ Light</button><button data-theme-choice="dark" onclick="setThemeChoice('dark')">🌙 Dark</button><button data-theme-choice="system" onclick="setThemeChoice('system')">📱 System</button></div></div><div class="card"><h3>Freedom Number</h3><label>Pengeluaran bulanan</label><input id="fnExpense" type="number" placeholder="10000000"><label>Return tahunan %</label><input id="fnReturn" type="number" placeholder="6"><button class="btn" onclick="calcFN()">Hitung</button><p id="fnResult"></p></div><div class="card"><h3>Security</h3><button class="btn alt" onclick="forceLock()">Lock Sekarang</button><br><br><button class="btn danger" onclick="localStorage.removeItem('pinHash');forceLock()">Reset PIN</button></div><div class="card"><h3>Backup</h3><button class="btn" onclick="exportData()">Export JSON</button><br><br><button class="btn" onclick="importBackup()">Import JSON</button></div><div class="card"><h3>Data Management</h3><button class="btn danger" onclick="clearAllData()">Clear Data</button><br><br><button class="btn danger" onclick="factoryReset()">Factory Reset</button></div>
+<div class="card"><h3>About Dunia Raya OS</h3>
+<p><b>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</b></p>
+<p>Created by Alpian Putra Sentosa.</p><p>Calendar Hub • Reminder System • Upcoming Dashboard</p>
+<p>© 2026 Alpian Putra Sentosa. All Rights Reserved.</p>
+<p class="subtle">Signature: DR-APS-2026</p>
+</div>`;
+renderThemeButtons();
+}
+
+
+/* === DROS v8.4 overrides: UX Polish & Dashboard Alive === */
+function progressMarkup(value,label='Progress'){
+  const v=Math.max(0,Math.min(100,Math.round(Number(value||0))));
+  return `<div class="progress-line"><small>${label}</small><small>${v}%</small></div><div class="progress"><div class="bar" data-target="${v}"></div></div>`;
+}
+function animateProgressBars(){requestAnimationFrame(()=>document.querySelectorAll('.bar[data-target]').forEach(b=>{b.style.width='0%';requestAnimationFrame(()=>{b.style.width=b.dataset.target+'%';});}));}
+function emptyState(icon,title,desc,button,action){return `<div class="empty-state"><div class="empty-icon">${icon}</div><div><h3>${title}</h3><p>${desc}</p>${button?`<button class="btn" onclick="${action}">${button}</button>`:''}</div></div>`}
+function updateFab(){const active=document.querySelector('.screen.active')?.id;const fab=document.querySelector('.fab');if(!fab)return;fab.classList.toggle('hidden',active==='more');fab.setAttribute('aria-label',active==='journal'?'Tulis journal':active==='wealth'?'Tambah data wealth':active==='goals'?'Tambah goal':'Quick add');}
+function show(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();updateFab();}
+function openAdd(){const active=document.querySelector('.screen.active')?.id;if(active==='more')return;if(active==='journal')return formJournal();
+ if(active==='wealth')return openSheet(`<div class="section" style="margin-top:0"><h2>Tambah Wealth</h2><span onclick="closeModal()" class="chip">×</span></div><div class="quick-menu"><div class="row clickable" onclick="formTx()"><div class="left"><div class="icon">💸</div><div><b>Catat Transaksi</b><small>Pemasukan atau pengeluaran</small></div></div><b>›</b></div><div class="row clickable" onclick="formAsset()"><div class="left"><div class="icon">🏦</div><div><b>Tambah Asset</b><small>SBN, deposito, kas, bisnis</small></div></div><b>›</b></div><div class="row clickable" onclick="formPocket()"><div class="left"><div class="icon">🎯</div><div><b>Tambah Pocket</b><small>Target tabungan baru</small></div></div><b>›</b></div></div>`);
+ if(active==='goals')return openSheet(`<div class="section" style="margin-top:0"><h2>Tambah Goals</h2><span onclick="closeModal()" class="chip">×</span></div><div class="quick-menu"><div class="row clickable" onclick="formGoal()"><div class="left"><div class="icon">🎯</div><div><b>Tambah Goal</b><small>Financial, personal, atau career</small></div></div><b>›</b></div><div class="row clickable" onclick="{const g=goals.find(x=>x.category===goalTab)||goals[0];g?logGoal(g.id):formGoal()}"><div class="left"><div class="icon">📚</div><div><b>Log Belajar</b><small>Catat 10 menit progres</small></div></div><b>›</b></div></div>`);
+ openSheet(`<div class="section" style="margin-top:0"><h2>Quick Add</h2><span onclick="closeModal()" class="chip">×</span></div><div class="quick-menu"><div class="row clickable" onclick="formTx()"><div class="left"><div class="icon">💸</div><div><b>Catat Transaksi</b><small>Cashflow hari ini</small></div></div><b>›</b></div><div class="row clickable" onclick="formJournal()"><div class="left"><div class="icon">📝</div><div><b>Tulis Journal</b><small>Simpan pikiran sebelum berlalu</small></div></div><b>›</b></div><div class="row clickable" onclick="formGoal()"><div class="left"><div class="icon">🎯</div><div><b>Tambah Goal</b><small>Arah baru untuk DROS</small></div></div><b>›</b></div><div class="row clickable" onclick="formAsset()"><div class="left"><div class="icon">🏦</div><div><b>Tambah Asset</b><small>Peta kekayaan pribadi</small></div></div><b>›</b></div></div>`)}
+function openSheet(html){sheet.innerHTML=html;modal.classList.add('active');document.body.classList.add('modal-open');setTimeout(()=>sheet.querySelector('button,input,select,textarea')?.focus(),30)}
+function closeModal(){modal.classList.remove('active');document.body.classList.remove('modal-open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeModal();if(e.key==='Enter'&&modal.classList.contains('active')){const primary=sheet.querySelector('[data-primary="true"]'); if(primary&&!primary.disabled) primary.click();}});
+function confirmAction(type){
+ const configs={clear:{title:'Hapus Data?',desc:'Data transaksi, goals, journal, asset, event, dan pengaturan user akan dihapus dari perangkat ini. Struktur default aplikasi tetap aman.',action:'Hapus Data',run:'doClearData()'},factory:{title:'Factory Reset?',desc:'Semua data akan dikembalikan seperti pertama kali aplikasi dibuka. Ketik RESET untuk melanjutkan.',action:'Factory Reset',run:'doFactoryReset()',needs:true},pin:{title:'Reset PIN?',desc:'Anda akan diminta membuat PIN baru setelah proses ini.',action:'Lanjutkan',run:'doResetPin()'}};
+ const c=configs[type];openSheet(`<div class="section" style="margin-top:0"><h2>${c.title}</h2><span onclick="closeModal()" class="chip">×</span></div><p>${c.desc}</p>${c.needs?'<label>Ketik RESET</label><input id="confirmText" autocomplete="off" oninput="confirmRun.disabled=this.value!==\'RESET\'">':''}<div class="grid" style="margin-top:16px"><button class="btn alt" onclick="closeModal()">Batal</button><button id="confirmRun" data-primary="true" class="btn danger" ${c.needs?'disabled':''} onclick="${c.run}">${c.action}</button></div>`)
+}
+function clearAllData(){confirmAction('clear')}function factoryReset(){confirmAction('factory')}function resetPinConfirm(){confirmAction('pin')}
+function doClearData(){const keepPin=localStorage.getItem('pinHash');['tx','pockets','goalsV2','journals','assets','eventsV82','profile','dr_theme'].forEach(k=>localStorage.removeItem(k));if(keepPin)localStorage.setItem('pinHash',keepPin);location.reload()}
+function doFactoryReset(){Object.keys(localStorage).filter(k=>k.startsWith('dr_')||['tx','pockets','goalsV2','journals','assets','eventsV82','profile','pinHash','pin'].includes(k)).forEach(k=>localStorage.removeItem(k));location.reload()}
+function doResetPin(){localStorage.removeItem('pinHash');closeModal();forceLock()}
+function renderLock(){let has=localStorage.getItem('pinHash');lock.innerHTML=`<div class="lock-shell" id="lockShell"><div class="lock-logo">🌍</div><div class="eyebrow" style="color:rgba(255,255,255,.65)">${has?'Secure Mode':'Setup Security'}</div><h1>Lindungi Dunia Raya Anda</h1><p class="lock-copy">${has?'Masukkan PIN 6 digit untuk membuka ruang personalmu.':'Buat PIN 6 digit untuk menjaga data finansial, jurnal, dan ruang pribadi tetap aman.'}</p><input aria-label="PIN 6 digit" class="pinbox" id="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off"><div class="pin-tools"><button onclick="togglePinVisibility()" aria-label="Tampilkan atau sembunyikan PIN">Show/Hide PIN</button><button onclick="pinInput.value=''">Clear</button></div><div id="pinError" class="pin-error"></div><div class="pin-keypad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button aria-label="Angka ${n}" onclick="pinDigit('${n}')">${n}</button>`).join('')}<button aria-label="Hapus PIN" onclick="pinBack()">⌫</button><button aria-label="Angka 0" onclick="pinDigit('0')">0</button><button aria-label="Submit PIN" onclick="submitPin()">✓</button></div><button class="btn lock-action" onclick="submitPin()">${has?'Unlock':'Simpan PIN'}</button></div>`;pinInput.focus();}
+function togglePinVisibility(){pinInput.type=pinInput.type==='password'?'text':'password'}
+function pinDigit(n){pinInput.value=(pinInput.value+n).replace(/\D/g,'').slice(0,6);if(pinInput.value.length===6)setTimeout(submitPin,120)}
+function pinBack(){pinInput.value=pinInput.value.slice(0,-1)}
+function pinFail(msg){pinError.textContent=msg;lockShell.classList.remove('shake');void lockShell.offsetWidth;lockShell.classList.add('shake')}
+async function createPin(){let p=pinInput.value.replace(/\D/g,'');if(p.length!==6)return pinFail('PIN harus 6 digit.');localStorage.setItem('pinHash',await hashPin(p));lockShell.classList.add('success-pop');setTimeout(()=>{lock.classList.add('hidden');showWelcome()},220)}
+async function loginPin(){let p=pinInput.value.replace(/\D/g,'');if(p.length!==6)return pinFail('Masukkan 6 digit PIN.');if(await hashPin(p)===localStorage.getItem('pinHash')){lockShell.classList.add('success-pop');setTimeout(()=>{lock.classList.add('hidden');showWelcome()},180)}else{pinInput.value='';pinFail('PIN salah. Coba lagi pelan-pelan.')}}
+document.addEventListener('keydown',e=>{if(lock&&!lock.classList.contains('hidden')){if(/^\d$/.test(e.key)){e.preventDefault();pinDigit(e.key)} if(e.key==='Backspace'){e.preventDefault();pinBack()} if(e.key==='Enter'){e.preventDefault();submitPin()}}});
+function exportData(){let data={version:'8.4',tx,pockets,goals,journals,assets,events,profile,theme:currentTheme};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dunia-raya-os-v8-4-backup.json';a.click()}
+function render(){renderProfile();renderUpcomingCard();renderTodayCommand();renderDashboardInsight();let inc=tx.filter(t=>t.type==='income').reduce((a,b)=>a+b.amount,0),exp=tx.filter(t=>t.type==='expense').reduce((a,b)=>a+b.amount,0),assetVal=assets.reduce((a,b)=>a+b.value,0),pocketVal=pockets.reduce((a,b)=>a+b.current,0),targetVal=pockets.reduce((a,b)=>a+b.target,0);balance.textContent=fmt(inc-exp+assetVal);income.textContent=fmt(inc);expense.textContent=fmt(exp);
+mainPocketCards.innerHTML=pockets.slice(0,2).map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3>${progressMarkup(pr,'Target')}<p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join('');
+homeGoals.innerHTML=goals.length?goals.slice(0,3).map(g=>`<div class="row clickable" onclick="formGoal('${g.id}')"><div class="left"><div class="icon">${iconTarget()}</div><div><b>${g.title}</b><small>${g.category} • ${g.progress||0}% • ${(g.logs||[]).reduce((a,b)=>a+b.duration,0)} menit</small></div></div><b>${g.progress||0}%</b></div>`).join(''):emptyState('🎯','Belum ada goal aktif.','Tujuan besar dimulai dari langkah kecil pertama.','Tambah Goal','formGoal()');
+homeJournal.innerHTML=journals[0]?`<div class="card"><h3>${journals[0].title}</h3><p>${journals[0].content}</p></div>`:emptyState('📝','Belum ada catatan hari ini.','Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.','Tulis Journal','formJournal()');
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); if(document.getElementById('wealth').classList.contains('active'))document.querySelectorAll('#wealth .tabs button')[wealthTab==='pockets'?0:wealthTab==='assets'?1:2].classList.add('active');if(document.getElementById('goals').classList.contains('active'))document.querySelectorAll('#goals .tabs button')[goalTab==='financial'?0:goalTab==='personal'?1:2].classList.add('active');
+const overall=targetVal?Math.min(100,Math.round(pocketVal/targetVal*100)):0;const wealthTop=`<div class="wealth-summary"><div class="today-tile"><span>Total Pockets</span><b>${fmt(pocketVal)}</b></div><div class="today-tile"><span>Total Assets</span><b>${fmt(assetVal)}</b></div><div class="today-tile"><span>Total Target</span><b>${fmt(targetVal)}</b></div><div class="today-tile"><span>Overall</span><b>${overall}%</b></div></div>`;
+const pocketHtml=pockets.map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3>${progressMarkup(pr,'Progress')}<p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join('');
+const assetHtml=assets.length?assets.map(a=>`<div class="row"><div class="left"><div class="icon">${iconWallet()}</div><div><b>${a.title}</b><small>${a.type} • ${fmt(a.value)} • income ${fmt(a.income)}/bln</small></div></div><div class="actions"><button class="chip" onclick="formAsset('${a.id}')">Edit</button><button class="chip" onclick="delAsset('${a.id}')">Hapus</button></div></div>`).join(''):emptyState('🏦','Belum ada aset.','Aset pertamamu bisa menjadi fondasi peta kekayaan pribadi di DROS.','Tambah Aset','formAsset()');
+const txHtml=tx.length?tx.map(t=>`<div class="row"><div class="left"><div class="icon">${iconWallet()}</div><div><b>${t.category}</b><small>${t.date} ${t.note?'• '+t.note:''}</small></div></div><div><div class="${t.type==='income'?'income':'expense'}">${t.type==='income'?'+':'-'}${fmt(t.amount)}</div><div class="actions"><button class="chip" onclick="formTx('${t.id}')">Edit</button><button class="chip" onclick="delTx('${t.id}')">Hapus</button></div></div></div>`).join(''):emptyState('💸','Belum ada transaksi.','Catatan kecil hari ini akan membuat cashflow lebih mudah dipahami nanti.','Catat Transaksi','formTx()');
+wealthContent.innerHTML=wealthTop+(wealthTab==='pockets'?pocketHtml:wealthTab==='assets'?assetHtml:txHtml);
+goalContent.innerHTML=goals.filter(g=>g.category===goalTab).map(g=>`<div class="card"><h3>${g.title}</h3>${progressMarkup(g.progress||0,'Goal')}<p>${g.progress||0}% • ${(g.logs||[]).reduce((a,b)=>a+b.duration,0)} menit belajar</p><br><button class="chip" onclick="formGoal('${g.id}')">Edit</button> <button class="chip" onclick="logGoal('${g.id}')">Log Belajar</button> <button class="chip" onclick="delGoal('${g.id}')">Hapus</button>${(g.logs||[]).slice(0,2).map(l=>`<p style="margin-top:10px">${l.date} • ${l.duration} menit • ${l.topic}</p>`).join('')}</div>`).join('')||emptyState('🎯','Belum ada goal di kategori ini.','Tujuan besar dimulai dari langkah kecil pertama.','Tambah Goal','formGoal()');
+journalList.innerHTML=journals.length?journals.map(j=>`<div class="card"><h3>${j.title}</h3><p>${j.content}</p><p style="margin-top:10px;font-size:12px">${j.date}</p><br><button class="chip" onclick="formJournal('${j.id}')">Edit</button> <button class="chip" onclick="delJournal('${j.id}')">Hapus</button></div>`).join(''):emptyState('📝','Belum ada journal.','Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.','Tulis Journal','formJournal()');
+moreContent.innerHTML=`<div class="row clickable" onclick="calendarHub()"><div class="left"><div class="icon">${iconNote()}</div><div><b>Calendar Hub</b><small>Agenda, tagihan, dan reminder</small></div></div><b>›</b></div><div class="row clickable" onclick="profileForm()"><div class="left"><div class="icon">${iconHome()}</div><div><b>Profile</b><small>Edit nama, role, badge, dan avatar</small></div></div><b>›</b></div><div class="card"><h3>Theme</h3><p>Dark mode dibuat lebih native: navy gelap, card slate, dan gold tetap hangat.</p><div class="theme-switcher"><button data-theme-choice="light" onclick="setThemeChoice('light')">☀️ Light</button><button data-theme-choice="dark" onclick="setThemeChoice('dark')">🌙 Dark</button><button data-theme-choice="system" onclick="setThemeChoice('system')">📱 System</button></div></div><div class="card"><h3>Freedom Number</h3><label>Pengeluaran bulanan</label><input id="fnExpense" type="number" placeholder="10000000"><label>Return tahunan %</label><input id="fnReturn" type="number" placeholder="6"><button class="btn" onclick="calcFN()">Hitung</button><p id="fnResult"></p></div><div class="card"><h3>Security</h3><button class="btn alt" onclick="forceLock()">Lock Sekarang</button><br><br><button class="btn danger" onclick="resetPinConfirm()">Reset PIN</button></div><div class="card"><h3>Backup</h3><button class="btn" onclick="exportData()">Export JSON</button><br><br><button class="btn" onclick="importBackup()">Import JSON</button></div><div class="card"><h3>Data Management</h3><button class="btn danger" onclick="clearAllData()">Clear Data</button><br><br><button class="btn danger" onclick="factoryReset()">Factory Reset</button></div><div class="card"><h3>About Dunia Raya OS</h3><p><b>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</b></p><p>Created by Alpian Putra Sentosa.</p><p>Dynamic Greeting • Premium Empty State • PIN Polish • Dashboard Insight • Dark Mode Premium</p><p>© 2026 Alpian Putra Sentosa. All Rights Reserved.</p><p class="subtle">Signature: DR-APS-2026</p></div>`;renderThemeButtons();updateFab();animateProgressBars();}
+
+renderLock();render();checkDueNotifications();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+</script>
+</body></html>
