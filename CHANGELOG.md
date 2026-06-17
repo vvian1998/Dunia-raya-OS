@@ -44,3 +44,32 @@
 - FAB tidak lagi menutupi konten terakhir karena screen diberi padding bawah lebih lega.
 - Warna income/expense dibuat lebih lembut dan premium.
 - Tanggal transaksi tampil lebih manusiawi seperti Hari ini, Kemarin, atau format tanggal Indonesia.
+
+
+## v8.4.1 — Wealth UI Refinement
+
+### Improved
+- Halaman Wealth tab Transaksi dibuat lebih ringkas dan tidak crowded.
+- Statistik utama dipadatkan menjadi Net Worth, Masuk, Keluar, Cashflow, dan Progress.
+- Total Pockets, Total Assets ganda, dan Total Target tidak lagi memenuhi tab Transaksi.
+- Card transaksi dibuat lebih bersih dengan ikon kategori, judul berbasis deskripsi, tanggal manusiawi, dan nominal yang jelas.
+- Tombol Edit/Hapus langsung diganti menjadi menu `⋮` agar UI lebih tenang.
+- Ditambahkan insight cashflow singkat agar Wealth terasa lebih hidup.
+- FAB spacing diperbaiki agar tidak menutupi card terakhir.
+
+### Notes
+- Patch ini mempertahankan struktur v8.4 dan tidak mengubah data localStorage.
+- Fokus patch adalah efisiensi visual dan kenyamanan pemakaian harian.
+
+## v8.4.2 — Finance Input UX Polish
+
+### Improved
+- Input nominal transaksi sekarang otomatis memformat angka ribuan. Contoh: `3000` langsung tampil sebagai `3.000`.
+- Form transaksi dibuat lebih cepat dan lebih nyaman dibaca: tipe, nominal, kategori, catatan, lalu simpan.
+- Kategori transaksi tidak lagi wajib diketik manual. Pengguna dapat memilih dari kategori siap pakai seperti Makan, Jajan, Transport, Tagihan, Keluarga, Gaji, Belanja, Kesehatan, Pendidikan, Hiburan, dan Lainnya.
+- Opsi Custom tetap tersedia untuk kategori khusus.
+- Ikon transaksi diganti dari emoji menjadi SVG line icon agar lebih konsisten, premium, dan tidak bergantung pada rendering emoji Android.
+- Konfirmasi hapus transaksi diganti dari popup Android/Browser default menjadi bottom sheet bergaya DROS.
+
+### Notes
+- Patch ini fokus pada pengalaman input finance harian agar pencatatan transaksi terasa lebih cepat, rapi, dan tidak seperti form teknis.

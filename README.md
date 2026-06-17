@@ -100,3 +100,19 @@ DROS memakai `localStorage` di perangkat pengguna. Sebelum melakukan import, cle
 - Mobile-first.
 - Aman terhadap localStorage existing.
 - UI harus terasa personal, tenang, premium, dan manusiawi.
+
+## Patch v8.6 — Finance UI Polish
+
+Patch ini memperbaiki tampilan Wealth khususnya daftar transaksi agar tidak terasa seperti spreadsheet/CRUD. Transaksi sekarang tampil sebagai card bersih dengan ikon kategori, nominal besar, meta yang lebih manusiawi, dan aksi melalui menu `⋮`. Halaman Wealth juga mendapat finance overview agar terasa lebih seperti pusat kendali keuangan pribadi.
+
+## Patch v8.4.2 — Finance Input UX Polish
+
+Patch ini memperbaiki pengalaman input keuangan harian:
+
+- Nominal otomatis diformat dengan titik ribuan saat diketik.
+- Kategori transaksi dipilih dari chip/button, bukan harus diketik manual.
+- Ikon kategori transaksi memakai SVG line icon, bukan emoji.
+- Opsi Custom tetap tersedia untuk kategori khusus.
+- Konfirmasi hapus transaksi memakai bottom sheet DROS, bukan popup Android/browser default.
+
+Tujuan patch: membuat pencatatan transaksi lebih cepat, lebih jelas, dan lebih nyaman dipakai setiap hari.

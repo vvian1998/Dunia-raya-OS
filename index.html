@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</title>
+<title>Dunia Raya OS v8.4.2 Finance Input UX Polish</title>
 <meta name="author" content="Alpian Putra Sentosa">
 <meta name="copyright" content="Copyright (c) 2026 Alpian Putra Sentosa. All Rights Reserved.">
 <meta name="application-name" content="Dunia Raya OS">
@@ -188,15 +188,17 @@ button,.btn,.chip,.category-choice,.fab{transition:transform .18s ease,filter .1
 body.modal-open{overflow:hidden}.btn[disabled]{opacity:.45;pointer-events:none}
 
 
-/* === DROS v8.6 Finance UI Patch: cleaner transactions === */
+/* === DROS v8.4.1 Wealth UI Refinement: cleaner finance surface === */
 .screen{padding-bottom:132px}
 .finance-overview{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.finance-overview .today-tile:first-child{grid-column:1/-1;background:linear-gradient(135deg,var(--primary),var(--deep));color:#fff}
-.finance-overview .today-tile:first-child span,.finance-overview .today-tile:first-child b{color:#fff}
+.finance-hero{grid-column:1/-1;background:linear-gradient(135deg,var(--primary),var(--deep));color:#fff;border:1px solid color-mix(in srgb,var(--primary) 45%,var(--line));border-radius:28px;padding:22px 20px;box-shadow:0 18px 38px rgba(18,58,90,.18)}
+.finance-hero span{display:block;color:rgba(255,255,255,.72);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.12em}.finance-hero b{display:block;color:#fff;font-size:34px;letter-spacing:-.06em;margin-top:8px;line-height:1.05}.finance-hero small{display:block;color:rgba(255,255,255,.72);font-weight:750;margin-top:10px}
+.finance-kpi{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:15px 14px;box-shadow:0 8px 22px rgba(20,30,40,.055)}.finance-kpi span{display:block;color:var(--muted);font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.08em}.finance-kpi b{display:block;color:var(--primary);font-size:22px;font-weight:950;letter-spacing:-.04em;margin-top:6px;line-height:1.05}.finance-kpi.positive b{color:#1E8E5A}.finance-kpi.negative b{color:#C56A5A}
+.finance-insight{grid-column:1/-1;border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--input));border-radius:24px;padding:15px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 8px 24px rgba(20,30,40,.05)}.finance-insight .emoji{width:38px;height:38px;border-radius:15px;background:var(--soft);display:grid;place-items:center;flex:none}.finance-insight b{display:block;color:var(--ink);font-size:14px}.finance-insight small{display:block;color:var(--muted);line-height:1.45;margin-top:3px;font-weight:700}
 .tx-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:16px 54px 16px 14px;display:flex;gap:13px;align-items:center;box-shadow:var(--shadow);margin-bottom:12px;animation:pop .18s ease}
 .tx-icon{width:54px;height:54px;border-radius:20px;background:var(--soft);display:grid;place-items:center;font-size:24px;flex:none;color:var(--primary)}
-.tx-main{min-width:0;flex:1}.tx-title{font-size:16px;font-weight:950;color:var(--ink);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tx-meta{margin-top:4px;color:var(--muted);font-size:12px;font-weight:700;line-height:1.35}.tx-amount{font-size:20px;font-weight:950;letter-spacing:-.04em;white-space:nowrap;margin-top:6px}.tx-amount.income{color:#1E8E5A}.tx-amount.expense{color:#C56A5A}.tx-menu-btn{position:absolute;right:12px;top:12px;width:36px;height:36px;border:1px solid var(--line);border-radius:14px;background:var(--input);color:var(--primary);font-size:18px;font-weight:950}.tx-action-list{display:grid;gap:10px}.tx-action-list .btn.danger{background:#C56A5A}.wealth-section-title{margin:14px 2px 10px;color:var(--primary);font-size:14px;font-weight:950;letter-spacing:.02em;text-transform:uppercase}.empty-state .btn{white-space:nowrap}
-@media (max-width:420px){.tx-card{padding-right:48px}.tx-amount{font-size:19px}.tx-icon{width:50px;height:50px;border-radius:18px}.finance-overview{grid-template-columns:1fr 1fr}}
+.tx-main{min-width:0;flex:1}.tx-title{font-size:16px;font-weight:950;color:var(--ink);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tx-meta{margin-top:4px;color:var(--muted);font-size:12px;font-weight:700;line-height:1.35}.tx-amount{font-size:20px;font-weight:950;letter-spacing:-.04em;white-space:nowrap;margin-top:6px}.tx-amount.income{color:#1E8E5A}.tx-amount.expense{color:#C56A5A}.tx-menu-btn{position:absolute;right:12px;top:12px;width:36px;height:36px;border:1px solid var(--line);border-radius:14px;background:var(--input);color:var(--primary);font-size:18px;font-weight:950}.tx-action-list{display:grid;gap:10px}.tx-action-list .btn.danger{background:#C56A5A}.wealth-section-title{margin:16px 2px 10px;color:var(--primary);font-size:14px;font-weight:950;letter-spacing:.02em;text-transform:uppercase}.empty-state .btn{white-space:nowrap}
+@media (max-width:420px){.tx-card{padding-right:48px}.tx-amount{font-size:19px}.tx-icon{width:50px;height:50px;border-radius:18px}.finance-overview{grid-template-columns:1fr 1fr}.finance-hero b{font-size:30px}.finance-kpi b{font-size:20px}}
 
 </style>
 </head>
@@ -650,7 +652,7 @@ goalContent.innerHTML=goals.filter(g=>g.category===goalTab).map(g=>`<div class="
 journalList.innerHTML=journals.length?journals.map(j=>`<div class="card"><h3>${j.title}</h3><p>${j.content}</p><p style="margin-top:10px;font-size:12px">${j.date}</p><br><button class="chip" onclick="formJournal('${j.id}')">Edit</button> <button class="chip" onclick="delJournal('${j.id}')">Hapus</button></div>`).join(''):`<div class="empty-state"><h3>Belum ada journal.</h3><p>Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.</p></div>`;
 moreContent.innerHTML=`<div class="row clickable" onclick="calendarHub()"><div class="left"><div class="icon">${iconNote()}</div><div><b>Calendar Hub</b><small>Agenda, tagihan, dan reminder</small></div></div><b>›</b></div><div class="row clickable" onclick="profileForm()"><div class="left"><div class="icon">${iconHome()}</div><div><b>Profile</b><small>Edit nama dan foto</small></div></div><b>›</b></div><div class="card"><h3>Theme</h3><p>Pilih tampilan Dunia Raya OS.</p><div class="theme-switcher"><button data-theme-choice="light" onclick="setThemeChoice('light')">☀️ Light</button><button data-theme-choice="dark" onclick="setThemeChoice('dark')">🌙 Dark</button><button data-theme-choice="system" onclick="setThemeChoice('system')">📱 System</button></div></div><div class="card"><h3>Freedom Number</h3><label>Pengeluaran bulanan</label><input id="fnExpense" type="number" placeholder="10000000"><label>Return tahunan %</label><input id="fnReturn" type="number" placeholder="6"><button class="btn" onclick="calcFN()">Hitung</button><p id="fnResult"></p></div><div class="card"><h3>Security</h3><button class="btn alt" onclick="forceLock()">Lock Sekarang</button><br><br><button class="btn danger" onclick="localStorage.removeItem('pinHash');forceLock()">Reset PIN</button></div><div class="card"><h3>Backup</h3><button class="btn" onclick="exportData()">Export JSON</button><br><br><button class="btn" onclick="importBackup()">Import JSON</button></div><div class="card"><h3>Data Management</h3><button class="btn danger" onclick="clearAllData()">Clear Data</button><br><br><button class="btn danger" onclick="factoryReset()">Factory Reset</button></div>
 <div class="card"><h3>About Dunia Raya OS</h3>
-<p><b>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</b></p>
+<p><b>Dunia Raya OS v8.4.2 Finance Input UX Polish</b></p>
 <p>Created by Alpian Putra Sentosa.</p><p>Calendar Hub • Reminder System • Upcoming Dashboard</p>
 <p>© 2026 Alpian Putra Sentosa. All Rights Reserved.</p>
 <p class="subtle">Signature: DR-APS-2026</p>
@@ -691,9 +693,9 @@ function pinFail(msg){pinError.textContent=msg;lockShell.classList.remove('shake
 async function createPin(){let p=pinInput.value.replace(/\D/g,'');if(p.length!==6)return pinFail('PIN harus 6 digit.');localStorage.setItem('pinHash',await hashPin(p));lockShell.classList.add('success-pop');setTimeout(()=>{lock.classList.add('hidden');showWelcome()},220)}
 async function loginPin(){let p=pinInput.value.replace(/\D/g,'');if(p.length!==6)return pinFail('Masukkan 6 digit PIN.');if(await hashPin(p)===localStorage.getItem('pinHash')){lockShell.classList.add('success-pop');setTimeout(()=>{lock.classList.add('hidden');showWelcome()},180)}else{pinInput.value='';pinFail('PIN salah. Coba lagi pelan-pelan.')}}
 document.addEventListener('keydown',e=>{if(lock&&!lock.classList.contains('hidden')){if(/^\d$/.test(e.key)){e.preventDefault();pinDigit(e.key)} if(e.key==='Backspace'){e.preventDefault();pinBack()} if(e.key==='Enter'){e.preventDefault();submitPin()}}});
-function exportData(){let data={version:'8.4',tx,pockets,goals,journals,assets,events,profile,theme:currentTheme};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dunia-raya-os-v8-4-backup.json';a.click()}
+function exportData(){let data={version:'8.4.2',tx,pockets,goals,journals,assets,events,profile,theme:currentTheme};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dunia-raya-os-v8-4-2-backup.json';a.click()}
 
-/* === DROS v8.6 Finance UI Patch helpers === */
+/* === DROS v8.4.1 Wealth UI Refinement helpers === */
 function categoryEmoji(cat='',type='expense'){
   const c=(cat||'').toLowerCase();
   if(type==='income'||/gaji|salary|income|uang|bonus|masuk/.test(c))return '💰';
@@ -751,7 +753,22 @@ function monthSummary(){
   const keluar=list.filter(t=>t.type==='expense').reduce((a,b)=>a+Number(b.amount||0),0);
   return {masuk,keluar,sisa:masuk-keluar};
 }
-function financeOverview(assetVal,pocketVal){const m=monthSummary();return `<div class="finance-overview"><div class="today-tile"><span>Net Worth Tercatat</span><b>${fmt(assetVal+pocketVal)}</b></div><div class="today-tile"><span>Masuk Bulan Ini</span><b>${fmt(m.masuk)}</b></div><div class="today-tile"><span>Keluar Bulan Ini</span><b>${fmt(m.keluar)}</b></div><div class="today-tile"><span>Sisa Cashflow</span><b>${fmt(m.sisa)}</b></div><div class="today-tile"><span>Total Assets</span><b>${fmt(assetVal)}</b></div></div>`}
+function financeOverview(assetVal,pocketVal,targetVal){
+  const m=monthSummary();
+  const netWorth=assetVal+pocketVal;
+  const progress=targetVal?Math.min(100,Math.round(pocketVal/targetVal*100)):0;
+  const cashCls=m.sisa>=0?'positive':'negative';
+  const insightTitle=m.sisa>=0?'Cashflow bulan ini masih positif.':'Cashflow bulan ini sedang minus.';
+  const insightText=m.sisa>=0?`${fmt(m.sisa)} tersisa setelah seluruh pengeluaran tercatat.`:`Pengeluaran melebihi pemasukan ${fmt(Math.abs(m.sisa))}. Coba cek kategori terbesar.`;
+  return `<div class="finance-overview">
+    <div class="finance-hero"><span>Net Worth</span><b>${fmt(netWorth)}</b><small>Ringkasan uang, pocket, dan asset tercatat.</small></div>
+    <div class="finance-kpi positive"><span>Masuk</span><b>${fmt(m.masuk)}</b></div>
+    <div class="finance-kpi negative"><span>Keluar</span><b>${fmt(m.keluar)}</b></div>
+    <div class="finance-kpi ${cashCls}"><span>Cashflow</span><b>${fmt(m.sisa)}</b></div>
+    <div class="finance-kpi"><span>Progress</span><b>${progress}%</b></div>
+    <div class="finance-insight"><div class="emoji">💡</div><div><b>${insightTitle}</b><small>${insightText}</small></div></div>
+  </div>`;
+}
 
 function render(){renderProfile();renderUpcomingCard();renderTodayCommand();renderDashboardInsight();let inc=tx.filter(t=>t.type==='income').reduce((a,b)=>a+b.amount,0),exp=tx.filter(t=>t.type==='expense').reduce((a,b)=>a+b.amount,0),assetVal=assets.reduce((a,b)=>a+b.value,0),pocketVal=pockets.reduce((a,b)=>a+b.current,0),targetVal=pockets.reduce((a,b)=>a+b.target,0);balance.textContent=fmt(inc-exp+assetVal);income.textContent=fmt(inc);expense.textContent=fmt(exp);
 mainPocketCards.innerHTML=pockets.slice(0,2).map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3>${progressMarkup(pr,'Target')}<p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join('');
@@ -762,10 +779,129 @@ const overall=targetVal?Math.min(100,Math.round(pocketVal/targetVal*100)):0;cons
 const pocketHtml=pockets.map(p=>{let pr=p.target?Math.min(100,Math.round(p.current/p.target*100)):0;return `<div class="card clickable" onclick="pocketDetail('${p.id}')"><h3>${p.title}</h3>${progressMarkup(pr,'Progress')}<p>${fmt(p.current)} / ${fmt(p.target)}</p></div>`}).join('');
 const assetHtml=assets.length?assets.map(a=>`<div class="row"><div class="left"><div class="icon">${iconWallet()}</div><div><b>${a.title}</b><small>${a.type} • ${fmt(a.value)} • income ${fmt(a.income)}/bln</small></div></div><div class="actions"><button class="chip" onclick="formAsset('${a.id}')">Edit</button><button class="chip" onclick="delAsset('${a.id}')">Hapus</button></div></div>`).join(''):emptyState('🏦','Belum ada aset.','Aset pertamamu bisa menjadi fondasi peta kekayaan pribadi di DROS.','Tambah Aset','formAsset()');
 const txHtml=tx.length?`<div class="wealth-section-title">Aktivitas Terakhir</div>`+tx.map(renderTxCard).join(''):emptyState('💸','Belum ada transaksi.','Catatan kecil hari ini akan membuat cashflow lebih mudah dipahami nanti.','Catat Transaksi','formTx()');
-wealthContent.innerHTML=financeOverview(assetVal,pocketVal)+wealthTop+(wealthTab==='pockets'?pocketHtml:wealthTab==='assets'?assetHtml:txHtml);
+wealthContent.innerHTML=(wealthTab==='tx'?financeOverview(assetVal,pocketVal,targetVal):'')+(wealthTab==='pockets'?pocketHtml:wealthTab==='assets'?assetHtml:txHtml);
 goalContent.innerHTML=goals.filter(g=>g.category===goalTab).map(g=>`<div class="card"><h3>${g.title}</h3>${progressMarkup(g.progress||0,'Goal')}<p>${g.progress||0}% • ${(g.logs||[]).reduce((a,b)=>a+b.duration,0)} menit belajar</p><br><button class="chip" onclick="formGoal('${g.id}')">Edit</button> <button class="chip" onclick="logGoal('${g.id}')">Log Belajar</button> <button class="chip" onclick="delGoal('${g.id}')">Hapus</button>${(g.logs||[]).slice(0,2).map(l=>`<p style="margin-top:10px">${l.date} • ${l.duration} menit • ${l.topic}</p>`).join('')}</div>`).join('')||emptyState('🎯','Belum ada goal di kategori ini.','Tujuan besar dimulai dari langkah kecil pertama.','Tambah Goal','formGoal()');
 journalList.innerHTML=journals.length?journals.map(j=>`<div class="card"><h3>${j.title}</h3><p>${j.content}</p><p style="margin-top:10px;font-size:12px">${j.date}</p><br><button class="chip" onclick="formJournal('${j.id}')">Edit</button> <button class="chip" onclick="delJournal('${j.id}')">Hapus</button></div>`).join(''):emptyState('📝','Belum ada journal.','Mungkin ada sesuatu yang ingin kamu simpan sebelum hari ini berlalu.','Tulis Journal','formJournal()');
-moreContent.innerHTML=`<div class="row clickable" onclick="calendarHub()"><div class="left"><div class="icon">${iconNote()}</div><div><b>Calendar Hub</b><small>Agenda, tagihan, dan reminder</small></div></div><b>›</b></div><div class="row clickable" onclick="profileForm()"><div class="left"><div class="icon">${iconHome()}</div><div><b>Profile</b><small>Edit nama, role, badge, dan avatar</small></div></div><b>›</b></div><div class="card"><h3>Theme</h3><p>Dark mode dibuat lebih native: navy gelap, card slate, dan gold tetap hangat.</p><div class="theme-switcher"><button data-theme-choice="light" onclick="setThemeChoice('light')">☀️ Light</button><button data-theme-choice="dark" onclick="setThemeChoice('dark')">🌙 Dark</button><button data-theme-choice="system" onclick="setThemeChoice('system')">📱 System</button></div></div><div class="card"><h3>Freedom Number</h3><label>Pengeluaran bulanan</label><input id="fnExpense" type="number" placeholder="10000000"><label>Return tahunan %</label><input id="fnReturn" type="number" placeholder="6"><button class="btn" onclick="calcFN()">Hitung</button><p id="fnResult"></p></div><div class="card"><h3>Security</h3><button class="btn alt" onclick="forceLock()">Lock Sekarang</button><br><br><button class="btn danger" onclick="resetPinConfirm()">Reset PIN</button></div><div class="card"><h3>Backup</h3><button class="btn" onclick="exportData()">Export JSON</button><br><br><button class="btn" onclick="importBackup()">Import JSON</button></div><div class="card"><h3>Data Management</h3><button class="btn danger" onclick="clearAllData()">Clear Data</button><br><br><button class="btn danger" onclick="factoryReset()">Factory Reset</button></div><div class="card"><h3>About Dunia Raya OS</h3><p><b>Dunia Raya OS v8.4 UX Polish & Dashboard Alive Update</b></p><p>Created by Alpian Putra Sentosa.</p><p>Dynamic Greeting • Premium Empty State • PIN Polish • Dashboard Insight • Dark Mode Premium</p><p>© 2026 Alpian Putra Sentosa. All Rights Reserved.</p><p class="subtle">Signature: DR-APS-2026</p></div>`;renderThemeButtons();updateFab();animateProgressBars();}
+moreContent.innerHTML=`<div class="row clickable" onclick="calendarHub()"><div class="left"><div class="icon">${iconNote()}</div><div><b>Calendar Hub</b><small>Agenda, tagihan, dan reminder</small></div></div><b>›</b></div><div class="row clickable" onclick="profileForm()"><div class="left"><div class="icon">${iconHome()}</div><div><b>Profile</b><small>Edit nama, role, badge, dan avatar</small></div></div><b>›</b></div><div class="card"><h3>Theme</h3><p>Dark mode dibuat lebih native: navy gelap, card slate, dan gold tetap hangat.</p><div class="theme-switcher"><button data-theme-choice="light" onclick="setThemeChoice('light')">☀️ Light</button><button data-theme-choice="dark" onclick="setThemeChoice('dark')">🌙 Dark</button><button data-theme-choice="system" onclick="setThemeChoice('system')">📱 System</button></div></div><div class="card"><h3>Freedom Number</h3><label>Pengeluaran bulanan</label><input id="fnExpense" type="number" placeholder="10000000"><label>Return tahunan %</label><input id="fnReturn" type="number" placeholder="6"><button class="btn" onclick="calcFN()">Hitung</button><p id="fnResult"></p></div><div class="card"><h3>Security</h3><button class="btn alt" onclick="forceLock()">Lock Sekarang</button><br><br><button class="btn danger" onclick="resetPinConfirm()">Reset PIN</button></div><div class="card"><h3>Backup</h3><button class="btn" onclick="exportData()">Export JSON</button><br><br><button class="btn" onclick="importBackup()">Import JSON</button></div><div class="card"><h3>Data Management</h3><button class="btn danger" onclick="clearAllData()">Clear Data</button><br><br><button class="btn danger" onclick="factoryReset()">Factory Reset</button></div><div class="card"><h3>About Dunia Raya OS</h3><p><b>Dunia Raya OS v8.4.2 Finance Input UX Polish</b></p><p>Created by Alpian Putra Sentosa.</p><p>Finance Input UX • Auto Amount Format • Category Picker • Cleaner Modals</p><p>© 2026 Alpian Putra Sentosa. All Rights Reserved.</p><p class="subtle">Signature: DR-APS-2026</p></div>`;renderThemeButtons();updateFab();animateProgressBars();}
+
+
+
+/* === DROS v8.4.2 Finance Input UX Polish === */
+(function(){
+  const css = `
+  .dros842-category-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:8px 0 14px}
+  .dros842-category-grid button{border:1px solid var(--line);background:var(--input);color:var(--ink);border-radius:16px;padding:11px 10px;text-align:left;font-weight:900;display:flex;align-items:center;gap:8px}
+  .dros842-category-grid button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .dros842-category-grid .mini-svg,.tx-card .mini-svg{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .dros842-amount-wrap{position:relative}.dros842-amount-wrap input{font-size:26px;font-weight:950;letter-spacing:-.03em;padding-left:48px}.dros842-amount-prefix{position:absolute;left:15px;top:22px;font-weight:950;color:var(--primary);font-size:13px;letter-spacing:.04em}.dros842-help{font-size:12px;color:var(--muted);font-weight:800;margin:-5px 0 10px}.dros842-custom{display:none}.dros842-custom.active{display:block}
+  .dros842-confirm{display:grid;gap:10px;margin-top:14px}.dros842-confirm p{line-height:1.55;color:var(--muted)}
+  `;
+  const style=document.createElement('style');style.textContent=css;document.head.appendChild(style);
+})();
+
+const DROS842_CATEGORIES=[
+  {id:'Makan',label:'Makan',icon:'makan'},
+  {id:'Jajan',label:'Jajan',icon:'jajan'},
+  {id:'Transport',label:'Transport',icon:'transport'},
+  {id:'Tagihan',label:'Tagihan',icon:'tagihan'},
+  {id:'Keluarga',label:'Keluarga',icon:'keluarga'},
+  {id:'Gaji',label:'Gaji',icon:'gaji'},
+  {id:'Belanja',label:'Belanja',icon:'belanja'},
+  {id:'Kesehatan',label:'Kesehatan',icon:'kesehatan'},
+  {id:'Pendidikan',label:'Pendidikan',icon:'pendidikan'},
+  {id:'Hiburan',label:'Hiburan',icon:'hiburan'},
+  {id:'Lainnya',label:'Lainnya',icon:'lainnya'},
+  {id:'Custom',label:'Custom',icon:'custom'}
+];
+function dros842Svg(name){
+  const common='width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  const map={
+    makan:`<svg ${common}><path d="M6 3v18"/><path d="M10 3v6a4 4 0 0 1-8 0V3"/><path d="M18 3v18"/><path d="M18 3c2 2 3 5 3 8h-6c0-3 1-6 3-8Z"/></svg>`,
+    jajan:`<svg ${common}><path d="M4 10h16l-1.5 10h-13L4 10Z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>`,
+    transport:`<svg ${common}><path d="M5 17h14l1-6-2-5H6l-2 5 1 6Z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M7 10h10"/></svg>`,
+    tagihan:`<svg ${common}><path d="M7 3h10v18l-3-2-2 2-2-2-3 2V3Z"/><path d="M9 8h6"/><path d="M9 12h6"/></svg>`,
+    keluarga:`<svg ${common}><path d="M12 21s-7-4.35-9-8.5C1 8.5 3.5 5 7 5c2 0 3.2 1.1 5 3 1.8-1.9 3-3 5-3 3.5 0 6 3.5 4 7.5C19 16.65 12 21 12 21Z"/></svg>`,
+    gaji:`<svg ${common}><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v.01M18 15v.01"/></svg>`,
+    belanja:`<svg ${common}><path d="M6 7h15l-2 9H8L6 7Z"/><path d="M6 7 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>`,
+    kesehatan:`<svg ${common}><path d="M12 21s8-4 8-11a8 8 0 0 0-16 0c0 7 8 11 8 11Z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>`,
+    pendidikan:`<svg ${common}><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>`,
+    hiburan:`<svg ${common}><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 12h4"/><path d="M10 10v4"/><path d="M16 12h.01"/><path d="M18 10h.01"/></svg>`,
+    custom:`<svg ${common}><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"/></svg>`,
+    lainnya:`<svg ${common}><circle cx="12" cy="12" r="9"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>`
+  };
+  return map[name]||map.lainnya;
+}
+function dros842CatFromText(text){
+  const v=(text||'').toLowerCase();
+  if(/makan|food|nasi|ayam|bakso|mie/.test(v))return 'Makan';
+  if(/jajan|es|gorengan|kopi|snack/.test(v))return 'Jajan';
+  if(/transport|ojek|bensin|parkir|gojek|grab/.test(v))return 'Transport';
+  if(/tagihan|wifi|listrik|kontrakan|paylater|cicilan/.test(v))return 'Tagihan';
+  if(/keluarga|adik|ayah|ibu/.test(v))return 'Keluarga';
+  if(/gaji|income|pemasukan|salary/.test(v))return 'Gaji';
+  if(/belanja|shop|beli/.test(v))return 'Belanja';
+  if(/sehat|obat|dokter|klinik/.test(v))return 'Kesehatan';
+  if(/sekolah|kursus|buku|pendidikan/.test(v))return 'Pendidikan';
+  if(/hiburan|film|game|karaoke/.test(v))return 'Hiburan';
+  return 'Lainnya';
+}
+function categoryIcon(cat){return dros842Svg((DROS842_CATEGORIES.find(c=>c.id===cat)||DROS842_CATEGORIES.find(c=>c.id===dros842CatFromText(cat))||{icon:'lainnya'}).icon)}
+function dros842PlainNumber(v){return String(v||'').replace(/\D/g,'')}
+function dros842FormatNumber(v){const n=dros842PlainNumber(v);return n?n.replace(/\B(?=(\d{3})+(?!\d))/g,'.'):''}
+function dros842AmountInput(id,value=''){return `<div class="dros842-amount-wrap"><span class="dros842-amount-prefix">Rp</span><input id="${id}" inputmode="numeric" autocomplete="off" value="${value?dros842FormatNumber(value):''}" oninput="this.value=dros842FormatNumber(this.value)"></div><div class="dros842-help">Contoh: ketik 3000 → otomatis menjadi 3.000</div>`}
+function selectTxCategory(value){
+  const hidden=document.getElementById('fCategory');
+  const custom=document.getElementById('fCategoryCustomWrap');
+  if(hidden)hidden.value=value;
+  document.querySelectorAll('[data-tx-cat]').forEach(btn=>btn.classList.toggle('active',btn.dataset.txCat===value));
+  if(custom)custom.classList.toggle('active',value==='Custom');
+  const customInput=document.getElementById('fCategoryCustom');
+  if(value==='Custom'&&customInput)setTimeout(()=>customInput.focus(),40);
+}
+function txCategoryGrid(current=''){
+  const selected=DROS842_CATEGORIES.some(c=>c.id===current)?current:'Custom';
+  const buttons=DROS842_CATEGORIES.map(c=>`<button type="button" data-tx-cat="${c.id}" class="${selected===c.id?'active':''}" onclick="selectTxCategory('${c.id}')"><span class="mini-svg">${dros842Svg(c.icon)}</span>${c.label}</button>`).join('');
+  return `<input id="fCategory" type="hidden" value="${selected}"><div class="dros842-category-grid">${buttons}</div><div id="fCategoryCustomWrap" class="dros842-custom ${selected==='Custom'?'active':''}"><label>Kategori Custom</label><input id="fCategoryCustom" value="${selected==='Custom'?(current||''):''}" placeholder="Tulis kategori sendiri"></div>`;
+}
+function formTx(id=null){
+  let o=id?tx.find(x=>x.id===id):{type:'expense',amount:'',category:'Makan',note:''};
+  openSheet(`<div class="section" style="margin-top:0"><h2>${id?'Edit':'Catat'} Transaksi</h2><span onclick="closeModal()" class="chip">×</span></div>
+    <label>Tipe</label><select id="fType"><option value="expense" ${o.type==='expense'?'selected':''}>Pengeluaran</option><option value="income" ${o.type==='income'?'selected':''}>Pemasukan</option></select>
+    <label>Nominal</label>${dros842AmountInput('fAmount',o.amount||'')}
+    <label>Kategori</label>${txCategoryGrid(o.category||'Makan')}
+    <label>Catatan</label><input id="fNote" value="${(o.note||'').replaceAll('"','&quot;')}" placeholder="Contoh: Beli gorengan">
+    <button class="btn" onclick="saveTx('${id||''}')">Simpan Transaksi</button>`);
+}
+function saveTx(id){
+  const amount=Number(dros842PlainNumber(fAmount.value)||0);
+  const catRaw=fCategory.value==='Custom'?(document.getElementById('fCategoryCustom')?.value||'Lainnya'):fCategory.value;
+  let o={id:id||uid(),type:fType.value,amount,category:catRaw||'Lainnya',note:fNote.value||'',date:new Date().toISOString().slice(0,10)};
+  tx=id?tx.map(x=>x.id===id?o:x):[o,...tx];
+  save('tx',tx);closeModal();render();showSaved();
+}
+function delTx(id){tx=tx.filter(x=>x.id!==id);save('tx',tx);render();showSaved();}
+function delTxFromSheet(id){
+  const t=tx.find(x=>x.id===id);if(!t)return;
+  openSheet(`<div class="section" style="margin-top:0"><h2>Hapus Transaksi?</h2><span onclick="closeModal()" class="chip">×</span></div>
+    <div class="dros842-confirm"><p>Transaksi <b>${txTitle(t)}</b> sebesar <b>${t.type==='income'?'+':'-'}${fmt(t.amount)}</b> akan dihapus dari perangkat ini.</p>
+    <div class="grid"><button class="btn alt" onclick="closeModal()">Batal</button><button class="btn danger" onclick="delTx('${id}');closeModal();render()">Hapus</button></div></div>`);
+}
+function txIcon(t){return `<span class="mini-svg">${categoryIcon(t.category)}</span>`}
+function renderTxCard(t){
+  const sign=t.type==='income'?'+':'-';
+  const cls=t.type==='income'?'income':'expense';
+  return `<div class="tx-card">
+    <div class="tx-main">
+      <div class="tx-icon ${cls}">${txIcon(t)}</div>
+      <div class="tx-copy">
+        <div class="tx-title">${txTitle(t)}</div>
+        <div class="tx-meta">${txMeta(t)}</div>
+        <div class="tx-amount ${cls}">${sign}${fmt(t.amount)}</div>
+      </div>
+    </div>
+    <button class="tx-menu-btn" aria-label="Opsi transaksi" onclick="txActions('${t.id}')">⋮</button>
+  </div>`;
+}
 
 renderLock();render();checkDueNotifications();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
