@@ -30,3 +30,17 @@
 - Clear Data menjaga PIN tetap tersimpan.
 - Factory Reset membersihkan key DROS/user secara menyeluruh.
 - Single-file PWA tetap bisa dibuka langsung dari `index.html`.
+
+## v8.6 — Finance UI Patch (Wealth Transaction Polish)
+
+### Added
+- Finance overview di halaman Wealth: Net Worth Tercatat, Masuk Bulan Ini, Keluar Bulan Ini, Sisa Cashflow, dan Total Assets.
+- Card transaksi baru yang lebih bersih dengan ikon kategori, judul transaksi berbasis catatan, meta kategori + tanggal manusiawi, dan nominal besar.
+- Menu aksi transaksi via tombol `⋮` berisi Edit, Duplikat, dan Hapus.
+- Helper kategori emoji untuk Makan, Transport, Tagihan, Rumah, Pendidikan, Keluarga, Hiburan, Gaji, dan default.
+
+### Improved
+- Tombol Edit/Hapus tidak lagi selalu tampil di card transaksi sehingga UI lebih premium dan tidak terasa seperti CRUD.
+- FAB tidak lagi menutupi konten terakhir karena screen diberi padding bawah lebih lega.
+- Warna income/expense dibuat lebih lembut dan premium.
+- Tanggal transaksi tampil lebih manusiawi seperti Hari ini, Kemarin, atau format tanggal Indonesia.
